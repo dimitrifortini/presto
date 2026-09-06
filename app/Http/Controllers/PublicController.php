@@ -9,7 +9,7 @@ class PublicController extends Controller
 {
     public function home()
     {
-        $articles = Article::where("is_accepted", true)->orderBy("created_at", "desc")->take(6)->orderBy("created_at", "desc")->get();
+        $articles = Article::where("is_accepted", true)->orderBy("created_at", "desc")->take(9)->orderBy("created_at", "desc")->get();
         return view('welcome', compact("articles"));
     }
     // PER DOCENTE: con il metodo commentato mi andava in errore Scout,sembra sia per colpa del metodo where() 

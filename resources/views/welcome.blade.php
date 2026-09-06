@@ -21,7 +21,7 @@
             <div class="col-12 mt-5 ps-5">
                 <h2 class="fw-semibold ls-2 ">{{__("ui.recent_articles")}}</h2>
             </div>
-            <div class="col-12 ">
+            <div class="col-12 p-0">
 
                 @if (session()->has('errorMessage'))
                     <div class="row justify-content-center">
@@ -53,7 +53,7 @@
                         @endforelse
 
                     </div>
-                    <div class="swiper-pagination m-5"></div>
+                    
                 </div>
                 {{-- SWIPER HOMEPAGE END --}}
             </div>

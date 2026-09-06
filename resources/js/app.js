@@ -10,8 +10,8 @@ var swiper = new Swiper('.mySwiper', {
 
     loop: true,
 
+    centeredSlides:true,
     speed: 1200,
-
     autoplay: {
         delay: 5000,
         disableOnInteraction: false,
@@ -36,8 +36,9 @@ var swiper = new Swiper('.mySwiper', {
 
         
         768: {
-            slidesPerView: 2,
+            slidesPerView: 1.5,
             spaceBetween: 20
+            
         },
 
        
@@ -47,8 +48,9 @@ var swiper = new Swiper('.mySwiper', {
         },
         
         1400:{
-            slidesPerView: 4,
+            slidesPerView: 4.5,
             spaceBetween: 30
+
         }
 
     }

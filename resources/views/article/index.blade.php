@@ -8,7 +8,7 @@
                 </header>
             </div>
             @forelse ($articles as $article)
-                <div class="col-12 col-lg-5 col-xl-3 col-md-6 my-5 mx-3">
+                <div class="col-12 col-lg-5 col-xl-3 col-md-7 my-5 mx-3">
                     <x-card :$article></x-card>
                 </div>
 

@@ -26,18 +26,18 @@ return
           'search' => 'Search',
 
           // Navigation
-          'recent_articles' => 'Artículos Recientes',
+          'recent_articles' => 'Recent Articles',
           'home' => 'Home',
           'categories' => 'Categories',
           'languages' => 'Languages',
-          'italian'=>'Italian',
-          'english'=>'English',
-          'spanish'=>'Spanish',
+          'italian' => 'Italian',
+          'english' => 'English',
+          'spanish' => 'Spanish',
           'all_articles' => 'All Articles',
           'publish_article' => 'Publish Article',
           'reviewer_area' => 'Reviewer Area',
-          'start_now'=>'Start Now',
-          
+          'start_now' => 'Start Now',
+
           // Categories
           'Elettronica' => 'Electronics',
           'Abbigliamento' => 'Clothing',
@@ -54,6 +54,21 @@ return
           'description' => 'Description',
           'information' => 'Information',
           'add_to_cart' => 'Add to Cart',
+          // Edit
+          "my_listings" => "My listings",
+          "the status of the listing is" => "The status of the listing is",
+          "pending_review" => "Pending review",
+          "accepted" => "Accepted",
+          "delete" => "Delete",
+          "edit" => "Edit",
+          "edit_listing" => "Edit listing",
+          // DELETE
+          'delete_listing' => 'Delete listing',
+          'are_you_sure_you_want_to_delete_this_listing' => 'Are you sure you want to delete this listing?',
+          'this_action_cannot_be_undone' => 'This action cannot be undone',
+
+
+
           // Revisor
           'no_articles_to_review' => 'No articles to review',
           'accept' => 'Accept',

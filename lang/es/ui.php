@@ -27,17 +27,17 @@ return
           'search' => 'Buscar',
 
           // Navigation
-          'recent_articles' => 'Recent Articles',
+          'recent_articles' => 'Artículos Recientes',
           'home' => 'Inicio',
           'categories' => 'Categorías',
-          'languages'=> 'Idiomas',
-          'italian'=>'Italiano',
-          'english'=>'Inglés',
-          'spanish'=>'Español',
+          'languages' => 'Idiomas',
+          'italian' => 'Italiano',
+          'english' => 'Inglés',
+          'spanish' => 'Español',
           'all_articles' => 'Todos los anuncios',
           'publish_article' => 'Publicar anuncio',
           'reviewer_area' => 'Área del revisor',
-          'start_now'=>'Empieza Ya',
+          'start_now' => 'Empieza Ya',
           //     Categories
           'Elettronica' => 'Electrónica',
           'Abbigliamento' => 'Ropa',
@@ -54,6 +54,20 @@ return
           'description' => 'Descripción',
           'information' => 'Información',
           'add_to_cart' => 'Añadir al carrito',
+          // Edit
+          "my_listings" => "Mis anuncios",
+          "the status of the listing is" => "El estado del anuncio es",
+          "pending_review" => "Pendiente de revisión",
+          "accepted" => "Aceptado",
+          "delete" => "Eliminar",
+          "edit" => "Editar",
+          "edit_listing" => "Editar anuncio",
+          // DELETE
+          'delete_listing' => 'Eliminar anuncio',
+          'are_you_sure_you_want_to_delete_this_listing' => '¿Estás seguro de que quieres eliminar este anuncio?',
+          'this_action_cannot_be_undone' => 'Esta acción no se puede deshacer',
+
+
           // Revisor
           'no_articles_to_review' => 'No hay artículos para revisar',
           'accept' => 'Aceptar',

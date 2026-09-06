@@ -11,6 +11,10 @@ Route::get("/articles/create",[ArticleController::class,("create")])->name("arti
 Route::get("/article/index",[ArticleController::class,("index")])->name("article.index");
 Route::get("/article/show/{article}",[ArticleController::class,("show")])->name("article.show");
 Route::get("/article/category/{category}",[ArticleController::class,("byCategory")])->name("article.category");
+Route::get("/article/my_article",[ArticleController::class,("myArticle")])->name("article.my_article")->middleware("auth");
+Route::get("/article/my_article/show/{article}",[ArticleController::class,("myArticleShow")])->name("article.my_article_show");
+Route::get("/article/my_article/edit/{article}",[ArticleController::class,("edit")])->name("article.edit")->middleware("auth");
+Route::delete("/article/my_article/delete/{article}",[ArticleController::class,("delete")])->name("article.delete")->middleware("auth");
 // REVISOR
 Route::get("/revisor/index",[RevisorController::class,("index")])->name("revisor.index")->middleware("isRevisor");
 Route::patch("/accept/{article}",[RevisorController::class,("accept")])->name("accept");

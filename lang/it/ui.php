@@ -30,13 +30,13 @@ return
           'home' => 'Home',
           'categories' => 'Categorie',
           'languages' => 'Lingue',
-          'italian'=>'Italiano',
-          'english'=>'Inglese',
-          'spanish'=>'Spagnolo',
+          'italian' => 'Italiano',
+          'english' => 'Inglese',
+          'spanish' => 'Spagnolo',
           'all_articles' => 'Tutti gli Annunci',
           'publish_article' => 'Pubblica Annuncio',
           'reviewer_area' => 'Zona Revisore',
-          'start_now'=>'Inizia Subito',
+          'start_now' => 'Inizia Subito',
 
           // Categories
           'Elettronica' => 'Elettronica',
@@ -49,6 +49,20 @@ return
           'Libri e Riviste' => 'Libri e Riviste',
           'Accessori' => 'Accessori',
           'Motori' => 'Motori',
+          // Edit
+          "my_listings" => "I miei annunci",
+          "the status of the listing is" => "Lo stato dell'annuncio è",
+          "pending_review" => "Da revisionare",
+          "accepted" => "Accettato",
+          "delete" => "Elimina",
+          "edit" => "Modifica",
+          "edit_listing" => "Modifica Annuncio",
+          // DELETE
+          'delete_listing' => 'Elimina annuncio',
+          'are_you_sure_you_want_to_delete_this_listing' => "Sei sicuro di voler eliminare l'annuncio?",
+          'this_action_cannot_be_undone' => "L'effetto è irreversibile",
+
+
           // Show
           'vat_included' => 'IVA inclusa',
           'description' => 'Descrizione',
