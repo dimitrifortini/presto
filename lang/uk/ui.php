@@ -66,6 +66,8 @@ return
           'delete_listing' => 'Delete listing',
           'are_you_sure_you_want_to_delete_this_listing' => 'Are you sure you want to delete this listing?',
           'this_action_cannot_be_undone' => 'This action cannot be undone',
+          // Undo
+          'undo' => 'Undo last review',
 
 
 

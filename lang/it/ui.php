@@ -61,6 +61,8 @@ return
           'delete_listing' => 'Elimina annuncio',
           'are_you_sure_you_want_to_delete_this_listing' => "Sei sicuro di voler eliminare l'annuncio?",
           'this_action_cannot_be_undone' => "L'effetto è irreversibile",
+          // UNDO
+          'undo' => 'Annulla ultima revisione',
 
 
           // Show

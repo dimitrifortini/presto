@@ -10,8 +10,15 @@
         </div>
         @if (session()->has('message'))
             <div class="row justify-content-center">
-                <div class="col-5 alert alert-success text-center shadow rounded">
+                <div class="col-5 alert alert-success text-center shadow rounded mt-3">
                     {{ session('message') }}
+                </div>
+            </div>
+        @endif
+        @if (session()->has('error_message'))
+            <div class="row justify-content-center">
+                <div class="col-5 alert alert-danger mt-3 text-center shadow rounded">
+                    {{ session('error_message') }}
                 </div>
             </div>
         @endif
@@ -72,7 +79,8 @@
                                                             </div>
                                                             <div
                                                                 class="col-xl-2 col-4 d-flex justify-content-start align-items-center">
-                                                                <div class="text-center me-3  {{ $image->racy }}"></div>
+                                                                <div class="text-center me-3  {{ $image->racy }}">
+                                                                </div>
                                                                 <div class="text-pr text-secondary">Racy</div>
                                                             </div>
                                                         </div>
@@ -150,17 +158,28 @@
                             <form action="{{ route('reject', ['article' => $article_to_check]) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button class="btn btn-review-danger btn-lg  py-2 px-4 fw-bold text-wh"><i
+                                <button class="btn btn-review-danger btn-lg  py-3 px-4 fw-bold text-wh"><i
                                         class="fa-solid fa-x text-wh "></i> {{ __('ui.reject') }} </button>
                             </form>
                             <form action="{{ route('accept', ['article' => $article_to_check]) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
 
-                                <button class="btn btn-review-success btn-lg py-2 px-5 fw-bold text-wh"><i
+                                <button class="btn btn-review-success btn-lg py-3 px-5 fw-bold text-wh"><i
                                         class="fa-solid fa-check text-wh "></i> {{ __('ui.accept') }}</button>
                             </form>
                         </div>
+                        @if (session('revisor_can_undo'))
+                            <form action="{{ route('undo', ['article' => $article_to_check]) }}" method="POST"
+                                class="w-100 ">
+                                @csrf
+                                @method('PATCH')
+
+                                <button class="btn btn-buy btn-lg py-2 px-5 fw-bold text-white w-100 mt-5 border-0"><i
+                                        class="fa-solid fa-x fa-arrow-rotate-left"></i></i>
+                                    {{ __('ui.undo') }}</button>
+                            </form>
+                        @endif
                     </div>
                     <div class="col-12 mt-5 d-none d-lg-block">
 

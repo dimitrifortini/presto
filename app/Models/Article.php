@@ -29,6 +29,10 @@ class Article extends Model
        return $this->belongsTo(User::class);
     }
 
+    public function userRevisor(): BelongsTo{
+       return $this->belongsTo(User::class,"revisor_id");
+    }
+
     public function setAccepted($value){
         $this->is_accepted=$value;
         $this->save();

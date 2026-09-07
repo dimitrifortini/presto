@@ -17,8 +17,9 @@ Route::get("/article/my_article/edit/{article}",[ArticleController::class,("edit
 Route::delete("/article/my_article/delete/{article}",[ArticleController::class,("delete")])->name("article.delete")->middleware("auth");
 // REVISOR
 Route::get("/revisor/index",[RevisorController::class,("index")])->name("revisor.index")->middleware("isRevisor");
-Route::patch("/accept/{article}",[RevisorController::class,("accept")])->name("accept");
-Route::patch("/reject/{article}",[RevisorController::class,("reject")])->name("reject");
+Route::patch("/accept/{article}",[RevisorController::class,("accept")])->name("accept")->middleware("isRevisor");
+Route::patch("/reject/{article}",[RevisorController::class,("reject")])->name("reject")->middleware("isRevisor");
+Route::patch("/undo/{article}",[RevisorController::class,("undo")])->name("undo")->middleware("isRevisor");
 // MAIL
 Route::get("/revisor/request",[RevisorController::class,("becomeRevisor")])->name("become.revisor")->middleware("auth");
 Route::get("/make/revisor/{user}",[RevisorController::class,("makeRevisor")])->name("make.revisor");

@@ -66,6 +66,8 @@ return
           'delete_listing' => 'Eliminar anuncio',
           'are_you_sure_you_want_to_delete_this_listing' => '¿Estás seguro de que quieres eliminar este anuncio?',
           'this_action_cannot_be_undone' => 'Esta acción no se puede deshacer',
+          // Undo
+          'undo' => 'Deshacer última revisión',
 
 
           // Revisor
