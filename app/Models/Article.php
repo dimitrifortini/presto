@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
@@ -56,5 +57,8 @@ class Article extends Model
 
     public function images() :HasMany{
         return $this->hasMany(Image::class);
+    }
+    public function reviews() :HasMany{
+        return $this->hasMany(Review::class);
     }
 }

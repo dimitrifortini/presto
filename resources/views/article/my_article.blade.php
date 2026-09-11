@@ -1,4 +1,5 @@
-@section('navbar-class', 'navbar-bg')
+@section('navbar-position', 'position-absolute')
+
 <x-layout>
     <div class="container-fluid  p-0">
         <div class="row mx-0">

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Review;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
@@ -33,6 +34,9 @@ class User extends Authenticatable
     }
     public function articles():HasMany{
         return $this->hasMany(Article::class);
+    }
+    public function reviews() :HasMany{
+        return $this->hasMany(Review::class);
     }
 
     public function reviewedArticles():HasMany{

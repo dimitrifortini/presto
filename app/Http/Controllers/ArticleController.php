@@ -40,7 +40,8 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        return view("article.show", compact("article"));
+        $reviews= $article->reviews()->latest()->get();    
+        return view("article.show", compact("article","reviews"));
     }
 
     public function byCategory(Category $category)

@@ -69,7 +69,8 @@ return
           // Undo
           'undo' => 'Undo last review',
 
-
+          // USER
+          "my_profile"=>"My profile",
 
           // Revisor
           'no_articles_to_review' => 'No articles to review',

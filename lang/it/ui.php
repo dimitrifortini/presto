@@ -1,7 +1,7 @@
 <?php
 return
      [
-          "hello" => "ciao",
+          "hello" => "Ciao",
           'welcome' => 'Benvenuto',
           // Autenticazione
           'login' => 'Accedi',
@@ -63,6 +63,8 @@ return
           'this_action_cannot_be_undone' => "L'effetto è irreversibile",
           // UNDO
           'undo' => 'Annulla ultima revisione',
+          // USER
+          "my_profile"=>"Il mio profilo",
 
 
           // Show

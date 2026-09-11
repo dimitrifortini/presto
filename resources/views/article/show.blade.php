@@ -81,6 +81,7 @@
                
                 <x-desktop-accordion
                 :$article
+                :$reviews
                 ></x-desktop-accordion>
             </div>
             <div class="col-12 mt-5 d-lg-none">

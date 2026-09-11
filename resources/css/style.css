@@ -359,6 +359,11 @@ h4,
     box-shadow: 0 0 0 0.2rem rgba(51, 51, 51, 0.15);
 }
 
+/* PROFILE USER */
+.pack{
+    height: 100px;
+}
+
 /* SHOW / REVISOR.INDEX */
 .btn-detail {
     width: 100%;
@@ -590,6 +595,27 @@ h4,
     margin-bottom: 40px;
 }
 
+/* REVIEW */
+.add_review{
+    transition: 0.1s ;
+}
+.add_review:hover{
+    transform: scale(1.01);
+}
+
+.rating i {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rating i.fa-solid {
+    color: #ffc107;
+}
+.yellow_star{
+    color: #ffc107;
+
+}
 /* FORM CREATE */
 .img-preview {
     background-position: center;

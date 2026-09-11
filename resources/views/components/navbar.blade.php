@@ -41,6 +41,9 @@
                                     <a class="text-decoration-none dropdown-item  text-blk h-100" href="{{route("article.my_article")}}">{{__("ui.my_listings")}}</a>
                                 </li>
                                 <li>
+                                    <a class="text-decoration-none dropdown-item  text-blk h-100" href="{{route("user.profile")}}">{{__("ui.my_profile")}}</a>
+                                </li>
+                                <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         <button type="submit"
                                             class="text-decoration-none dropdown-item  text-blk h-100">{{ __('ui.logout') }}</button>

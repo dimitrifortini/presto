@@ -68,6 +68,8 @@ return
           'this_action_cannot_be_undone' => 'Esta acción no se puede deshacer',
           // Undo
           'undo' => 'Deshacer última revisión',
+          // USER
+          "my_profile"=>"Mi perfil",
 
 
           // Revisor
