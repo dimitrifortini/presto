@@ -87,7 +87,8 @@
             <div class="col-12 mt-5 d-lg-none">
                
                 <x-mobile-accordion
-                :$article                
+                :$article 
+                :$reviews               
                 ></x-mobile-accordion>
             </div>
 

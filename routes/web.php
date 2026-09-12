@@ -18,7 +18,9 @@ Route::get("/article/my_article/show/{article}",[ArticleController::class,("myAr
 Route::get("/article/my_article/edit/{article}",[ArticleController::class,("edit")])->name("article.edit")->middleware("auth");
 Route::delete("/article/my_article/delete/{article}",[ArticleController::class,("delete")])->name("article.delete")->middleware("auth");
 // REVIEW
-Route::post("/article/{article}/review",[ReviewController::class,("store")])->name("review.store");
+Route::post("/article/{article}/review/store",[ReviewController::class,("store")])->name("review.store");
+Route::put("/article/{article}/review/{review}/update",[ReviewController::class,("update")])->name("review.update");
+Route::delete("/review/{review}/destroy",[ReviewController::class,("destroy")])->name("review.destroy");
 // REVISOR
 Route::get("/revisor/index",[RevisorController::class,("index")])->name("revisor.index")->middleware("isRevisor");
 Route::patch("/accept/{article}",[RevisorController::class,("accept")])->name("accept")->middleware("isRevisor");

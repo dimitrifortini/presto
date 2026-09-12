@@ -23,6 +23,8 @@ class ReviewController extends Controller
      */
     public function store(Request $request, Article $article)
     {
+       
+
         Review::create(
             [
                 "content" => $request->content,
@@ -55,16 +57,35 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Review $review)
-    {
-        //
-    }
+   public function update(Request $request, Article $article, Review $review)
+{
+    $request->validate([
+        'content' => 'required|string',
+        'rating' => 'required|integer|min:1|max:5',
+    ]);
+
+    $review->update([
+        'content' => $request->content,
+        'rating' => $request->rating,
+    ]);
+
+    return redirect()
+        ->back()
+        ->with('success', 'Recensione modificata con successo.');
+}
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Review $review)
-    {
-        //
+   public function destroy(Review $review)
+{
+    if (auth()->id() !== $review->reviewer_id) {
+        abort(403);
     }
+
+    $review->delete();
+
+    return redirect()->back()
+        ->with('success', 'Recensione eliminata con successo.');
+}
 }
