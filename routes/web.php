@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReviewController;
@@ -21,6 +22,10 @@ Route::delete("/article/my_article/delete/{article}",[ArticleController::class,(
 Route::post("/article/{article}/review/store",[ReviewController::class,("store")])->name("review.store");
 Route::put("/article/{article}/review/{review}/update",[ReviewController::class,("update")])->name("review.update");
 Route::delete("/review/{review}/destroy",[ReviewController::class,("destroy")])->name("review.destroy");
+// CART
+Route::post("/cart/{article}",[CartController::class,("store")])->name("cart.store")->middleware("auth");
+Route::delete("/cart/{cart}/destroy",[CartController::class,("destroy")])->name("cart.destroy")->middleware("auth");
+Route::get("/cart/index",[CartController::class,("index")])->name("cart.index")->middleware("auth");
 // REVISOR
 Route::get("/revisor/index",[RevisorController::class,("index")])->name("revisor.index")->middleware("isRevisor");
 Route::patch("/accept/{article}",[RevisorController::class,("accept")])->name("accept")->middleware("isRevisor");

@@ -30,6 +30,10 @@ class Article extends Model
        return $this->belongsTo(User::class);
     }
 
+ public function carts(): HasMany
+{
+    return $this->hasMany(Cart::class);
+}
     public function userRevisor(): BelongsTo{
        return $this->belongsTo(User::class,"revisor_id");
     }

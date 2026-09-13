@@ -74,8 +74,12 @@
                 <h2 class="fw-semibold mb-2 product-title">{{ $article->title }}</h2>
                 <p class="h4 text-secondary fst-italic mb-4">#{{ __('ui.' . $article->category->name) }}</p>
                 <h3 class=" h1 fw-bold h2 mb-1">{{ $article->price }} €</h3>
-                <p class="text-muted mb-5"> {{ __('ui.vat_included') }}</p>
-                <button class="btn-buy btn-detail"> {{ __('ui.add_to_cart') }}</button>
+                <p class="text-muted mb-3"> {{ __('ui.vat_included') }}</p>
+                <form class=" " action="{{route("cart.store",["article"=>$article ])}}" id="cartShowForm" method="POST">
+                    @csrf
+                    <input type="number" name="quantity" min="1" step="1" value="1" class="w-50 mb-5">
+                </form>
+                <button type="submit" class="btn-buy btn-detail" form="cartShowForm"> {{ __('ui.add_to_cart') }}</button>
             </div>
             <div class="col-12 mt-5 d-none d-lg-block">
                

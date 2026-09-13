@@ -229,36 +229,38 @@ deleteButtons.forEach(button => {
 
 });
 
-cancelDelete.addEventListener("click", () => {
-
-    deletePopup.classList.add("d-none");
-
-});
+if (cancelDelete) {
+    
+    cancelDelete.addEventListener("click", () => {
+    
+        deletePopup.classList.add("d-none");
+    
+        const deleteButtonsMobile = document.querySelectorAll(".delete-review");
+        
+        const deletePopupMobile = document.querySelector("#deletePopupMobile");
+        const deleteFormMobile = document.querySelector("#deleteReviewFormMobile");
+        const cancelDeleteMobile = document.querySelector("#cancelDeleteMobile");
+        
+        deleteButtonsMobile.forEach(button => {
+        
+            button.addEventListener("click", () => {
+        
+                const deleteUrl = button.dataset.deleteUrl;
+        
+                deleteFormMobile.action = deleteUrl;
+        
+                deletePopupMobile.classList.remove("d-none");
+        
+            });
+        
+        });
+        
+        cancelDeleteMobile.addEventListener("click", () => {
+        
+            deletePopupMobile.classList.add("d-none");
+        
+        });
+    });
+}
 
 // DELETE POPUP MOBILE
-
-const deleteButtonsMobile = document.querySelectorAll(".delete-review");
-
-const deletePopupMobile = document.querySelector("#deletePopupMobile");
-const deleteFormMobile = document.querySelector("#deleteReviewFormMobile");
-const cancelDeleteMobile = document.querySelector("#cancelDeleteMobile");
-
-deleteButtonsMobile.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const deleteUrl = button.dataset.deleteUrl;
-
-        deleteFormMobile.action = deleteUrl;
-
-        deletePopupMobile.classList.remove("d-none");
-
-    });
-
-});
-
-cancelDeleteMobile.addEventListener("click", () => {
-
-    deletePopupMobile.classList.add("d-none");
-
-});

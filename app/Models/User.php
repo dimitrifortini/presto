@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Article;
+use App\Models\Cart;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -42,4 +43,9 @@ class User extends Authenticatable
     public function reviewedArticles():HasMany{
         return $this->hasMany(Article::class,"revisor_id");
     }
+
+    public function carts(): HasMany
+{
+    return $this->hasMany(Cart::class);
+}
 }

@@ -155,6 +155,7 @@ h4,
 }
 
 .fa-circle-user,
+.fa-cart-shopping,
 .btn {
     color: var(--wh);
 }
@@ -180,6 +181,7 @@ h4,
 
 .navbar:hover .fa-bars,
 .navbar:hover .fa-circle-user,
+.navbar:hover .fa-cart-shopping,
 .navbar:hover .btn,
 .navbar:hover a,
 .navbar:hover .fa-magnifying-glass,
@@ -672,6 +674,20 @@ h4,
     width: 90%;
     max-width: 450px;
 }
+
+/* CART */
+.x-position{
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.default-img{
+    max-height: 300px;
+    max-width: 300px;
+    background-color: var(--lgrey);
+}
+
 /* FORM CREATE */
 .img-preview {
     background-position: center;

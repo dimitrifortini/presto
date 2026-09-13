@@ -80,8 +80,8 @@ class ReviewController extends Controller
    public function destroy(Review $review)
 {
     if (auth()->id() !== $review->reviewer_id) {
-        abort(403);
-    }
+       abort(403);
+    } 
 
     $review->delete();
 

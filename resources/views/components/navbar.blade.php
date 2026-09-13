@@ -26,22 +26,34 @@
                             class="text-decoration-none  d-none d-xl-flex me-3 acces">{{ __('ui.register') }}</a>
                     @endguest
                     @auth
-                        <div class="dropdown d-flex align-items-end">
+                        {{-- CART SHOPPING --}}
+                        <a href="{{route("cart.index")}}" class="text-decoration-none d-flex align-items-center">
+                            <i class="fa-solid fa-cart-shopping fa-2x ">
+                            </i>
+                            @if (\App\Models\Cart::cartCount())
+                            <span  class="ms-1 px-3 py-1  rounded-pill bg-secondary text-wh">{{\App\Models\Cart::cartCount()}}</span>
+                                
+                            @endif
+                        </a>
+                        {{-- USER ACCOUNT  --}}
+                        <div class="dropdown d-flex align-items-end ms-2">
                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="fa-solid fa-circle-user fa-2x "></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <p class="text-secondary mb-1 px-2">{{ucfirst(__("ui.hello"))}},
-                                    <span class="d-block text-secondary mb-3">{{Auth::user()->name}}</span>
+                                    <p class="text-secondary mb-1 px-2">{{ ucfirst(__('ui.hello')) }},
+                                        <span class="d-block text-secondary mb-3">{{ Auth::user()->name }}</span>
                                     </p>
                                 </li>
                                 <li>
-                                    <a class="text-decoration-none dropdown-item  text-blk h-100" href="{{route("article.my_article")}}">{{__("ui.my_listings")}}</a>
+                                    <a class="text-decoration-none dropdown-item  text-blk h-100"
+                                        href="{{ route('article.my_article') }}">{{ __('ui.my_listings') }}</a>
                                 </li>
                                 <li>
-                                    <a class="text-decoration-none dropdown-item  text-blk h-100" href="{{route("user.profile")}}">{{__("ui.my_profile")}}</a>
+                                    <a class="text-decoration-none dropdown-item  text-blk h-100"
+                                        href="{{ route('user.profile') }}">{{ __('ui.my_profile') }}</a>
                                 </li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
@@ -62,10 +74,45 @@
                     </button>
 
 
-                    <div class="d-none d-xl-flex">
-                        <x-_locale lang="it" />
-                        <x-_locale lang="uk" />
-                        <x-_locale lang="es" />
+
+                    <div class="dropdown d-none d-xl-flex align-items-center">
+                        <button class="btn dropdown-toggle d-flex align-items-center gap-1" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+
+                            @switch(app()->getLocale())
+                                @case('it')
+                                    <img src="{{ asset('vendor/blade-flags/country-it.svg') }}" width="20" height="20"
+                                        alt="Italiano">
+                                    <span>IT</span>
+                                @break
+
+                                @case('uk')
+                                    <img src="{{ asset('vendor/blade-flags/country-uk.svg') }}" width="20" height="20"
+                                        alt="English">
+                                    <span>EN</span>
+                                @break
+
+                                @case('es')
+                                    <img src="{{ asset('vendor/blade-flags/country-es.svg') }}" width="20" height="20"
+                                        alt="Español">
+                                    <span>ES</span>
+                                @break
+                            @endswitch
+
+                        </button>
+
+
+                        <ul class="dropdown-menu dropdown-menu-end p-2">
+                            <li>
+                                <x-_locale lang="it" />
+                            </li>
+                            <li>
+                                <x-_locale lang="uk" />
+                            </li>
+                            <li>
+                                <x-_locale lang="es" />
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -129,8 +176,9 @@
                     </div>
                     <ul class="list-unstyled ">
                         <li class="nav-item d-xl-none  order-4">
-                            <a href="#languagesMenu" class="nav-link active-color py-2 w-100" data-bs-toggle="collapse"
-                                role="button" aria-expanded="false" aria-controls="languagesMenu">
+                            <a href="#languagesMenu" class="nav-link active-color py-2 w-100"
+                                data-bs-toggle="collapse" role="button" aria-expanded="false"
+                                aria-controls="languagesMenu">
                                 {{ __('ui.languages') }}
                             </a>
                             <div class="collapse w-100" id="languagesMenu">

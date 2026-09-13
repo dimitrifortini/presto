@@ -32,9 +32,11 @@
         </div>
     </a>
 
-    <div class="text-center pb-4">
-        <button class="btn-buy">
+    <form method="POST" action="{{route("cart.store",["article"=>$article])}}" class="text-center pb-4" >
+        @csrf
+        <input type="hidden" name="quantity" value="1">
+        <button type="submit" class="btn-buy">
             {{ __('ui.add_to_cart') }}
         </button>
-    </div>
+    </form>
 </div>
