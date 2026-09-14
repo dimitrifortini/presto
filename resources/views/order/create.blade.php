@@ -1,4 +1,4 @@
-```blade
+
 @section('navbar-class', 'navbar-bg')
 
 <x-layout>
