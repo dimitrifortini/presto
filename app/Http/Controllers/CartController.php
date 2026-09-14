@@ -16,8 +16,8 @@ class CartController extends Controller
     public function index()
     {   
         $carts=Cart::where("user_id",auth()->id())->get();
-        $total=$this->sumPrice();
-        return view("cart.index",compact("carts","total"));
+        
+        return view("cart.index",compact("carts"));
     }
 
     /**
@@ -49,15 +49,7 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-   public function sumPrice(){
-        $carts= Cart::where("user_id",auth()->id())->get();
-        $total=0;
-        foreach ($carts as $cart) {
-            $quantity=$cart->article->price*$cart->quantity;
-            $total+=$quantity;
-        }
-        return $total;
-    } 
+   
 
     /**
      * Display the specified resource.

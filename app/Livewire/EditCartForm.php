@@ -11,14 +11,17 @@ class EditCartForm extends Component
     public function plus()
     {
         $this->cart->increment('quantity');
+        $this->dispatch("cart-updated");
     }
 
     public function minus()
     {
         if ($this->cart->quantity > 1) {
             $this->cart->decrement('quantity');
+            $this->dispatch("cart-updated");
         } else {
             $this->cart->delete();
+            $this->dispatch("cart-updated");
             return redirect()->route("cart.index");
         }
     }

@@ -65,4 +65,9 @@ class Article extends Model
     public function reviews() :HasMany{
         return $this->hasMany(Review::class);
     }
+
+    public function orderItems()
+{
+    return $this->hasMany(OrderItem::class);
+}
 }

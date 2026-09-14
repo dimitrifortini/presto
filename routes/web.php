@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ReviewController;
@@ -26,6 +27,11 @@ Route::delete("/review/{review}/destroy",[ReviewController::class,("destroy")])-
 Route::post("/cart/{article}",[CartController::class,("store")])->name("cart.store")->middleware("auth");
 Route::delete("/cart/{cart}/destroy",[CartController::class,("destroy")])->name("cart.destroy")->middleware("auth");
 Route::get("/cart/index",[CartController::class,("index")])->name("cart.index")->middleware("auth");
+//ORDER
+Route::get("/order/show/{order}",[OrderController::class,("show")])->name("order.show")->middleware("auth");
+Route::post("/order/store",[OrderController::class,("store")])->name("order.store")->middleware("auth");
+Route::get("/order/create",[OrderController::class,("create")])->name("order.create")->middleware("auth");
+
 // REVISOR
 Route::get("/revisor/index",[RevisorController::class,("index")])->name("revisor.index")->middleware("isRevisor");
 Route::patch("/accept/{article}",[RevisorController::class,("accept")])->name("accept")->middleware("isRevisor");
