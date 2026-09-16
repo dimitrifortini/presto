@@ -1,8 +1,6 @@
-
 @section('navbar-class', 'navbar-bg')
 
 <x-layout>
-
     <main class="container">
         <div class="row justify-content-evenly">
             <div class="col-12 col-lg-5">
@@ -78,18 +76,20 @@
                 </form>
             </div>
             <div class="col-12 col-lg-6">
-                <h2 class="text-center fw-bold my-5">Riepilogo Ordine:</h2>
-                <div class="row justify-content-center ">
-                    <div class="col-12 order-items overflow-auto mb-4 custom-scrollbar">
-                        @foreach ($carts as $cart)
-                            <div class="col-12 border rounded-3 shadow-sm mb-4 p-3">
+                <h2 class="text-center fw-bold my-5">
+                    Riepilogo Ordine:
+                </h2>
+                <div class="row justify-content-center">
+                    <div class="col-12 mb-4">
+                        @foreach ($carts->take(3) as $cart)
+                            <div class="border rounded-3 shadow-sm mb-4 p-3">
                                 <div class="d-flex align-items-center gap-3">
-                                    <a href="{{ route('article.show', $cart->article) }}" class="flex-shrink-0"
-                                        style="width: 100px; height: 100px;">
+                                    <a href="{{ route('article.show', $cart->article) }}" class="flex-shrink-0 square-100"
+                                        >
                                         @if ($cart->article->images->isNotEmpty())
                                             <img src="{{ $cart->article->images->first()->getUrl(300, 300) }}"
                                                 alt="Immagine di prodotto"
-                                                class="w-100 h-100 object-fit-cover rounded-2">
+                                                class=" w-100 h-100 object-fit-cover rounded-2">
                                         @else
                                             <img src="/media/placeholder-show/1.png" alt="Immagine di prodotto"
                                                 class="w-100 h-100 object-fit-cover rounded-2">
@@ -120,8 +120,67 @@
                                 </div>
                             </div>
                         @endforeach
+                        @if ($carts->count() > 3)
+                            <div class="order-summary-accordion">
+                                <div id="moreArticles" class="collapse">
+                                    <div class="">
+                                        @foreach ($carts->skip(3) as $cart)
+                                            <div class="order-item border rounded-3 shadow-sm mb-4 p-3">
+                                                <div class="d-flex align-items-center gap-3">
+                                                    <a href="{{ route('article.show', $cart->article) }}"
+                                                        class="flex-shrink-0 square-100" >
+                                                        @if ($cart->article->images->isNotEmpty())
+                                                            <img src="{{ $cart->article->images->first()->getUrl(300, 300) }}"
+                                                                alt="Immagine di prodotto"
+                                                                class="w-100 h-100 object-fit-cover rounded-2">
+                                                        @else
+                                                            <img src="/media/placeholder-show/1.png"
+                                                                alt="Immagine di prodotto"
+                                                                class="w-100 h-100 object-fit-cover rounded-2">
+                                                        @endif
+                                                    </a>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="fw-semibold mb-2">
+                                                            {{ $cart->article->title }}
+                                                        </h5>
+                                                        <div class="text-secondary small">
+                                                            Quantità: {{ $cart->quantity }}
+                                                        </div>
+                                                        <div class="mt-1">
+                                                            {{ number_format($cart->article->price, 2, ',', '.') }} €
+                                                            <span class="text-secondary small">
+                                                                / pezzo
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-end">
+                                                        <span class="text-secondary small d-block">
+                                                            Subtotale
+                                                        </span>
+                                                        <span class="fw-bold">
+                                                            {{ number_format($cart->article->price * $cart->quantity, 2, ',', '.') }}
+                                                            €
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <button type="button" class="show-more-items" data-bs-toggle="collapse"
+                                    data-bs-target="#moreArticles" aria-expanded="false"
+                                    aria-controls="moreArticles">
+                                    <span class="show-more-text">
+                                        Mostra altri {{ $carts->count() - 3 }} articoli
+                                    </span>
+                                    <span class="hide-more-text">
+                                        Nascondi articoli
+                                    </span>
+                                </button>
+                            </div>
+                        @endif
                     </div>
-                    <div class="border-top pt-3 mt-2 text-end">
+                    <div class="col-12 border-top pt-3 mt-2 text-end">
                         <span class="fs-5 me-3">
                             Totale
                         </span>
