@@ -15,7 +15,7 @@
                 <div class="col-12 col-xl-3 col-lg-5 col-md-7 my-5 ">
                     <x-card :$article></x-card>
                 </div>
-    
+
             @empty
                 <div class="col-12 my-5 ">
                     <h3 class=" text-center text-secondary fw-semibold mb-5"> {{ __('ui.no_articles_in_category') }}
@@ -26,7 +26,7 @@
                         <a href="{{ route('article.create') }}" class="btn-add text-decoration-none text-center py-4">
                             {{ __('ui.publish_article') }}
                         </a>
-    
+
                     </div>
                 @endauth
             @endforelse

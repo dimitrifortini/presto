@@ -2,7 +2,7 @@
 
 <x-layout>
     <div class="container-fluid  p-0">
-        <div class="row mx-0">
+        <div class="row mx-0 ">
             <div class="col-12 p-0">
                 <header class="bg-category  d-flex align-items-end ">
                     <h2 class="fw-bold text-wh category-title pb-2 ps-4 display-4">{{ ucfirst(__('ui.my_profile')) }}
@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row d-flex justify-content-center align-items-center flex-column">
+        <div class="row d-flex justify-content-center align-items-center flex-column px-lg-0 px-3">
             <div class="col-12 text-center">
                 <h2 class="mt-5 mb-3 fw-semibold display-2">{{ Auth::user()->name }}</h2>
                 <img src="https://picsum.photos/200" alt="Avatar Utente" class="rounded-circle mb-3">
@@ -46,13 +46,13 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-        <a href="{{route("user.orders")}}"  class="col-12 text-decoration-none text-blk col-lg-6 offset-md-1 offset-lg-3  d-flex align-items-center form-box py-2 mb-5 shadow">
+        <div class="row px-lg-0 px-3">
+        <a href="{{route("order.index")}}"  class="col-12 text-decoration-none text-blk col-lg-6 offset-md-1 offset-lg-3  d-flex align-items-center form-box py-2 mb-5 shadow">
             <h3 class="fw-semibold">I miei ordini </h3>
             <img class="img-fluid ms-auto pack" src="{{asset("media/packaging.png")}}" alt="Immagine di un pacco presto ">
             <span><i class="fa-solid fa-angle-right fa-2x"></i></span>
         </a>
-        <a href="{{route("user.reviews")}}" class="col-12  col-lg-6 offset-md-1 offset-lg-3  text-decoration-none text-blk d-flex align-items-center form-box py-2 mb-5 shadow">
+        <a href="{{route("review.index")}}" class="col-12  col-lg-6 offset-md-1 offset-lg-3  text-decoration-none text-blk d-flex align-items-center form-box py-2 mb-5 shadow">
             <h3 class=" fw-semibold">Le mie recensioni</h3>
             <img src="{{asset("media/stella.png")}}" alt="Immagine di una stella" class="img-fluid ms-auto pack">
             <span><i class="fa-solid fa-angle-right fa-2x ms-3"></i></span>
@@ -60,4 +60,3 @@
         </div>
     </div>
 </x-layout>
-<i class="fa-solid fa-box-open"></i>

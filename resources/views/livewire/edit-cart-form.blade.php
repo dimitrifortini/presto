@@ -1,6 +1,6 @@
-<p class="mb-0">
-    Qty.
-    <span class="fw-semibold">{{ $cart->quantity }}</span>
+<p class="mb-0 text-blk">
+    <span class="text-secondary">Qty.</span>
+    <span class="fw-semibold ">{{ $cart->quantity }}</span>
 
     <span role="button" wire:click="minus" class="">
         <i class="ms-3  fa-solid fa-minus"></i>

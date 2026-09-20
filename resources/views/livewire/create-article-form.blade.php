@@ -1,12 +1,12 @@
 <div class="col-12 col-md-10 col-lg-8">
-    
-    <form wire:submit="store" class="form-box mb-3" enctype="multipart/form-data" >
+
+    <form wire:submit="store" class="form-box mb-3" enctype="multipart/form-data">
         <div class="mb-5">
-            <h2 class="text-center">{{__("ui.insert_new_listing")}}</h2>
+            <h2 class="text-center">{{ __('ui.insert_new_listing') }}</h2>
         </div>
 
         <div class="mb-3">
-            <label for="articleTitle" class="form-label">{{__("ui.name")}} {{__("ui.item")}}</label>
+            <label for="articleTitle" class="form-label">{{ __('ui.name') }} {{ __('ui.item') }}</label>
             <input wire:model="title" type="text" class="form-control shadow" id="articleTitle">
             <div class="text-danger">
                 @error('title')
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="mb-3">
-            <label for="articleDescription" class="form-label">{{__("ui.description")}} {{__("ui.item")}}</label>
+            <label for="articleDescription" class="form-label">{{ __('ui.description') }} {{ __('ui.item') }}</label>
             <textarea wire:model="description" class="form-control shadow" id="articleDescription" cols="30" rows="10"></textarea>
             <div class="text-danger">
                 @error('description')
@@ -24,9 +24,10 @@
             </div>
         </div>
         <div class="mb-3 ">
-            <label for="articlePrice" class="form-label">{{__("ui.price")}} {{__("ui.item")}}</label>
+            <label for="articlePrice" class="form-label">{{ __('ui.price') }} {{ __('ui.item') }}</label>
             <div class="input-group">
-                <input wire:model="price" type="number" step="0.01" min="0" class="form-control shadow" id="articlePrice">
+                <input wire:model="price" type="number" step="0.01" min="0" class="form-control shadow"
+                    id="articlePrice">
                 <span class="input-group-text shadow-bottom-right">€</span>
             </div>
             <div class="text-danger">
@@ -37,7 +38,7 @@
 
         </div>
         <div class="mb-3">
-            <p>{{__("ui.categories")}}</p>
+            <p>{{ __('ui.categories') }}</p>
             <div class="text-danger">
                 @error('categories')
                     {{ $message }}
@@ -47,7 +48,8 @@
         <div class="mb-3 d-flex flex-wrap gap-4">
             @foreach ($categories as $category)
                 <div class="form-check ">
-                    <input class="form-check-input" type="radio" wire:model="category_id" value="{{ $category->id }}">
+                    <input class="form-check-input" type="radio" wire:model="category_id"
+                        value="{{ $category->id }}">
 
                     <label class="form-check-label">
                         {{ __("ui.$category->name") }}
@@ -60,14 +62,16 @@
                 {{ $message }}
             @enderror
         </div>
-         <div class="mb-3">
-            <label  class="form-label">Immagine {{__("ui.item")}}</label>
-            <input wire:model="temporary_images" multiple type="file"  class="form-control input-group shadow  @error("temporary_images.*") is-invalid @enderror" placeholder="Img/">
+        <div class="mb-3">
+            <label class="form-label">Immagine {{ __('ui.item') }}</label>
+            <input wire:model="temporary_images" multiple type="file"
+                class="form-control input-group shadow  @error('temporary_images.*') is-invalid @enderror"
+                placeholder="Img/">
             <div class="text-danger">
-                @error("temporary_images.*")
+                @error('temporary_images.*')
                     {{ $message }}
                 @enderror
-                  @error("temporary_images")
+                @error('temporary_images')
                     {{ $message }}
                 @enderror
             </div>
@@ -75,10 +79,12 @@
                 <div class="mb-3">
                     <p>Photo preview:</p>
                     <div class="row border border-4 border-blk rounded shadow py-4">
-                        @foreach ($images as $key=> $image)
+                        @foreach ($images as $key => $image)
                             <div class="col d-flex flex-column align-items-center my-3">
-                                <div class="img-preview mx-auto shadow rounded" style="background-image: url({{$image->temporaryUrl()}});"></div>
-                            <button type="button" class="btn mt-1 btn-danger" wire:click="removeImage({{$key}})">X</button>
+                                <div class="img-preview mx-auto shadow rounded"
+                                    style="background-image: url({{ $image->temporaryUrl() }});"></div>
+                                <button type="button" class="btn mt-1 btn-danger"
+                                    wire:click="removeImage({{ $key }})">X</button>
                             </div>
                         @endforeach
                     </div>
@@ -86,8 +92,8 @@
             @endif
         </div>
         <div class="d-flex justify-content-center mt-5 ">
-            <button type="submit" class="btn-submit ">{{__("ui.enter")}}</button>
+            <button type="submit" class="btn-submit ">{{ __('ui.enter') }}</button>
         </div>
     </form>
-    <x-message/>
+    <x-message />
 </div>

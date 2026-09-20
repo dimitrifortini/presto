@@ -9,8 +9,9 @@
                         <div class="swiper-wrapper">
                             @foreach ($article->images as $key => $image)
                                 <div class="swiper-slide swiper-slide-show">
-                                    <img src="{{ $image->getUrl(300,300) }}"
-                                        alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}" />
+                                    <img src="{{ $image->getUrl(300, 300) }}"
+                                        alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}"
+                                        class="zoomable-image" />
                                 </div>
                             @endforeach
 
@@ -23,7 +24,7 @@
                         <div class="swiper-wrapper">
                             @foreach ($article->images as $key => $image)
                                 <div class="swiper-slide ">
-                                    <img src="{{ $image->getUrl(300,300) }}"
+                                    <img src="{{ $image->getUrl(300, 300) }}"
                                         alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}" />
                                 </div>
                             @endforeach
@@ -35,16 +36,16 @@
                     <div class="swiper mySwiper2">
                         <div class="swiper-wrapper ">
                             <div class="swiper-slide swiper-slide-show">
-                                <img src="/media/placeholder-show/1.png" />
+                                <img src="/media/placeholder-show/1.png" class="zoomable-image" />
                             </div>
                             <div class="swiper-slide swiper-slide-show">
-                                <img src="/media/placeholder-show/2.png" />
+                                <img src="/media/placeholder-show/2.png" class="zoomable-image" />
                             </div>
                             <div class="swiper-slide swiper-slide-show">
-                                <img src="/media/placeholder-show/3.png" />
+                                <img src="/media/placeholder-show/3.png" class="zoomable-image" />
                             </div>
                             <div class="swiper-slide swiper-slide-show">
-                                <img src="/media/placeholder-show/5.png" />
+                                <img src="/media/placeholder-show/5.png" class="zoomable-image" />
                             </div>
                         </div>
                         <div class="swiper-button-next"></div>
@@ -70,30 +71,29 @@
                 @endif
                 {{-- SWIPER END DEFAULT IMAGES --}}
             </div>
-            <div class="col-12 col-md-4 d-flex flex-column align-items-lg-start align-items-center justify-content-center mt-3 ps-lg-5  ">
+            <div
+                class="col-12 col-md-4 d-flex flex-column align-items-lg-start align-items-center justify-content-center mt-3 ps-lg-5  ">
                 <h2 class="fw-semibold mb-2 product-title">{{ $article->title }}</h2>
                 <p class="h4 text-secondary fst-italic mb-4">#{{ __('ui.' . $article->category->name) }}</p>
                 <h3 class=" h1 fw-bold h2 mb-1">{{ $article->price }} €</h3>
                 <p class="text-muted mb-3"> {{ __('ui.vat_included') }}</p>
-                <form class=" " action="{{route("cart.store",["article"=>$article ])}}" id="cartShowForm" method="POST">
+                <form class=" text-center text-md-start" action="{{ route('cart.store', ['article' => $article]) }}"
+                    id="cartShowForm" method="POST">
                     @csrf
-                    <input type="number" name="quantity" min="1" step="1" value="1" class="w-50 mb-5">
+                    <label for="quantityShow" class="text-muted">Qty.</label>
+                    <input type="number" id="quantityShow" name="quantity" min="1" step="1" value="1"
+                        class="w-50 mb-5">
                 </form>
-                <button type="submit" class="btn-buy btn-detail" form="cartShowForm"> {{ __('ui.add_to_cart') }}</button>
+                <button type="submit" class="btn-buy btn-detail" form="cartShowForm">
+                    {{ __('ui.add_to_cart') }}</button>
             </div>
             <div class="col-12 mt-5 d-none d-lg-block">
-               
-                <x-desktop-accordion
-                :$article
-                :$reviews
-                ></x-desktop-accordion>
+
+                <x-desktop-accordion :$article :$reviews></x-desktop-accordion>
             </div>
             <div class="col-12 mt-5 d-lg-none">
-               
-                <x-mobile-accordion
-                :$article 
-                :$reviews               
-                ></x-mobile-accordion>
+
+                <x-mobile-accordion :$article :$reviews></x-mobile-accordion>
             </div>
 
 

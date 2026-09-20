@@ -12,9 +12,7 @@ class UserController extends Controller
         return view("user.profile");
 
     }
-     public function orders(){
-        return view("user.my_order");
-    }
+    
     public function reviews(){
         return view("user.my_review");
     }

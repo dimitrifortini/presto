@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-12 px-0">
                 <header class="bg-category d-flex align-items-end">
-                    <h1 class="fw-bold text-wh category-title pb-2 ps-4 display-4">{{__("ui.all_articles")}}</h1>
+                    <h1 class="fw-bold text-wh category-title pb-2 ps-4 display-4">{{ __('ui.all_articles') }}</h1>
                 </header>
             </div>
             @forelse ($articles as $article)

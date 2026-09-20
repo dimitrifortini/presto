@@ -11,11 +11,10 @@ class ReviewController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function index() {
+        $reviews=Review::where("reviewer_id",auth()->id())->orderBy("updated_at","desc")->get();
+        return view("review.index",compact("reviews"));
+    }
     public function create() {}
 
     /**

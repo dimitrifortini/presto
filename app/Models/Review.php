@@ -14,6 +14,7 @@ class Review extends Model
         "reviewer_id",
         "article_id",
         "rating",
+        "reviewer_name",
     ];
 
     public function user(): BelongsTo{

@@ -27,12 +27,13 @@
                     @endguest
                     @auth
                         {{-- CART SHOPPING --}}
-                        <a href="{{route("cart.index")}}" class="text-decoration-none d-flex align-items-center">
+                        <a href="{{ route('cart.index') }}"
+                            class="text-decoration-none d-xl-flex align-items-center d-none">
                             <i class="fa-solid fa-cart-shopping fa-2x ">
                             </i>
                             @if (\App\Models\Cart::cartCount())
-                            <span  class="ms-1 px-3 py-1  rounded-pill bg-secondary text-wh">{{\App\Models\Cart::cartCount()}}</span>
-                                
+                                <span
+                                    class="ms-1 px-3 py-1  rounded-pill bg-secondary text-wh">{{ \App\Models\Cart::cartCount() }}</span>
                             @endif
                         </a>
                         {{-- USER ACCOUNT  --}}
@@ -129,34 +130,57 @@
                         <x-xl-navbar></x-xl-navbar>
 
 
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a class="nav-link" aria-current="page" href="{{ route('home') }}">{{ __('ui.home') }}</a>
                         </li>
 
-                        <li class="nav-item order-2 position-static categories active-color">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#categoriesMenu" role="button">
-                                {{ __('ui.categories') }}
-                            </a>
-                        </li>
-                        <li class="nav-item order-1">
-                            <a class="nav-link font-wh"
-                                href="{{ route('article.index') }}">{{ __('ui.all_articles') }}</a>
-                        </li>
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link font-wh "
-                                    href="{{ route('article.create') }}">{{ __('ui.publish_article') }}</a>
-                            </li>
                             @if (Auth::user()->is_revisor)
-                                <li class="nav-item order-3">
-                                    <a class="nav-link font-wh "
+                                <li class="nav-item ">
+                                    <a class="nav-link text-wh "
                                         href="{{ route('revisor.index') }}">{{ __('ui.reviewer_area') }}
                                         <span
                                             class="ms-1 px-3 py-1  rounded-pill bg-secondary text-wh">{{ \App\Models\Article::toBeRevisedCount() }}</span>
                                     </a>
                                 </li>
                             @endif
+
+                            @if (Auth::user()->is_admin)
+                                <li class="nav-item ">
+                                    <a class="nav-link text-wh " href="{{ route('admin.index') }}">Zona Amministratore
+
+                                    </a>
+                                </li>
+                            @endif
                         @endauth
+
+
+                        <li class="nav-item ">
+                            <a class="nav-link text-wh "
+                                href="{{ route('article.index') }}">{{ __('ui.all_articles') }}</a>
+                        </li>
+                        @auth
+                            <li class="nav-item ">
+                                <a class="nav-link text-wh "
+                                    href="{{ route('article.create') }}">{{ __('ui.publish_article') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('cart.index') }}" class="text-decoration-none  nav-link">
+                                    Carrello
+                                    @if (\App\Models\Cart::cartCount())
+                                        <span
+                                            class="ms-1 px-3 py-1  rounded-pill bg-secondary text-wh">{{ \App\Models\Cart::cartCount() }}</span>
+                                    @endif
+                                </a>
+                            </li>
+                        @endauth
+                        <li class="nav-item  position-static categories active-color">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#categoriesMenu" role="button">
+                                {{ __('ui.categories') }}
+                            </a>
+                        </li>
+
+
 
                     </ul>
 
@@ -175,7 +199,7 @@
                         </div>
                     </div>
                     <ul class="list-unstyled ">
-                        <li class="nav-item d-xl-none  order-4">
+                        <li class="nav-item d-xl-none  ">
                             <a href="#languagesMenu" class="nav-link active-color py-2 w-100"
                                 data-bs-toggle="collapse" role="button" aria-expanded="false"
                                 aria-controls="languagesMenu">

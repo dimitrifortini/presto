@@ -19,7 +19,7 @@
 
 
     <x-navbar />
-    
+
     <main class="flex-grow-1">
         {{ $slot }}
 

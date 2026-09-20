@@ -14,13 +14,14 @@ class Order extends Model
         "status",
         "shipping_address",
         "payment_method",
+        "cancelled_at"
     ];
        public function user():BelongsTo
 {
     return $this->belongsTo(User::class);
 }
 
-public function items(): HasMany
+public function order_items(): HasMany
 {
     return $this->hasMany(Order_Item::class);
 }

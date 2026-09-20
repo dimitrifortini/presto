@@ -1,4 +1,3 @@
-
 <main class=" container">
     <div class="row justify-content-center ">
         <div class="col-12 col-md-10 col-lg-8 ">
@@ -83,7 +82,7 @@
                     @if (!empty($existingImages))
                         <div class="mb-3">
                             @if ($existingImages->isNotEmpty())
-                            <p>Actual photo preview:</p>
+                                <p>Actual photo preview:</p>
                                 <div class="row border border-4 border-blk rounded shadow py-4">
 
                                     @foreach ($existingImages as $image)
@@ -94,9 +93,9 @@
                                             <button type="button" class="btn mt-1 btn-danger"
                                                 wire:click="removeExistingImage({{ $image->id }})">X</button>
                                         </div>
-                                        @endforeach
-                                    </div>
-                                
+                                    @endforeach
+                                </div>
+
                             @endif
                         </div>
                     @endif

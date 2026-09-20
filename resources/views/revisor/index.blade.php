@@ -10,14 +10,14 @@
         </div>
         @if (session()->has('message'))
             <div class="row justify-content-center">
-                <div class="col-5 alert alert-success text-center shadow rounded mt-3">
+                <div class="col-11 alert alert-success text-center shadow rounded mt-3">
                     {{ session('message') }}
                 </div>
             </div>
         @endif
         @if (session()->has('error_message'))
             <div class="row justify-content-center">
-                <div class="col-5 alert alert-danger mt-3 text-center shadow rounded">
+                <div class="col-11 alert alert-danger mt-3 text-center shadow rounded">
                     {{ session('error_message') }}
                 </div>
             </div>
@@ -95,7 +95,7 @@
                             <div thumbsSlider="" class="swiper mySwiper3">
                                 <div class="swiper-wrapper">
                                     @foreach ($article_to_check->Images as $key => $image)
-                                        <div class="swiper-slide">
+                                        <div class="swiper-slide swiper-slide-show">
                                             <img src="{{ $image->getUrl(300, 300) }}"
                                                 alt="Immagine {{ $key + 1 }} dell'articolo {{ $article_to_check->title }}" />
                                         </div>
@@ -107,16 +107,16 @@
                             {{-- SWIPER DEFAULT IMAGES --}}
                             <div class="swiper mySwiper2">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide swiper-slide-show">
                                         <img src="/media/placeholder-show/1.png" />
                                     </div>
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide swiper-slide-show">
                                         <img src="/media/placeholder-show/2.png" />
                                     </div>
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide swiper-slide-show">
                                         <img src="/media/placeholder-show/3.png" />
                                     </div>
-                                    <div class="swiper-slide">
+                                    <div class="swiper-slide swiper-slide-show">
                                         <img src="/media/placeholder-show/5.png" />
                                     </div>
                                 </div>
@@ -183,11 +183,20 @@
                     </div>
                     <div class="col-12 mt-5 d-none d-lg-block">
 
-                        <x-desktop-accordion :article="$article_to_check"></x-desktop-accordion>
+                        <x-desktop-accordion 
+                        :article="$article_to_check"
+                        :reviews="$reviews"
+                        >
+                        </x-desktop-accordion>
                     </div>
                     <div class="col-12 mt-5 d-lg-none">
 
-                        <x-mobile-accordion :article="$article_to_check"></x-mobile-accordion>
+                        <x-mobile-accordion 
+                        :article="$article_to_check"
+                        :reviews="$reviews"
+                        
+                        >
+                        </x-mobile-accordion>
                     </div>
                 @else
                     <div class="row justify-content-center align-items-center ">

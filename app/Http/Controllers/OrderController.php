@@ -14,10 +14,12 @@ class OrderController extends Controller
         $request->validate([
             "shipping_address" => "required",
             "payment_method" => "required",
-        ]);
-        $total = 0;
-        $carts = Cart::where("user_id", auth()->id())->get();
-        foreach ($carts as $cart) {
+            ]);
+            $total = 0;
+            $carts = Cart::where("user_id", auth()->id())->get();
+            if ($carts->isEmpty()) {
+            return redirect()->route('cart.index');}            
+            foreach ($carts as $cart) {
             $multiply = $cart->article->price * $cart->quantity;
             $total += $multiply;
         };
@@ -39,17 +41,18 @@ class OrderController extends Controller
         }
 
         Cart::where("user_id", auth()->id())->delete();
-        return redirect()->route("order.show", $order->id);
+
+        return redirect()->route("order.index", $order->id);
     }
 
-    public function show(Order $order)
-    {
-        return view("order.show", compact("order"));
+    public function index()
+    {       
+        $orders= Order::where("user_id",auth()->id())->orderBy("created_at","desc")->get();
+        return view("order.index",compact("orders"));
     }
     public function create()
     {
         $carts = Cart::where("user_id", auth()->id())->get();
-
         $total = 0;
         foreach ($carts as $cart) {
             $quantity = $cart->article->price * $cart->quantity;

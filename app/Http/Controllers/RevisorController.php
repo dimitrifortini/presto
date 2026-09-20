@@ -7,6 +7,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\BecomeRevisor;
+use App\Models\Review;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
@@ -16,7 +17,8 @@ class RevisorController extends Controller
     public function index()
     {
         $article_to_check = Article::where("is_accepted", null)->orderBy("created_at", "asc")->first();
-        return view("revisor.index", compact("article_to_check"));
+        $reviews = $article_to_check ? $article_to_check->reviews : collect();
+        return view("revisor.index", compact("article_to_check","reviews"));
     }
 
     public function accept(Article $article)

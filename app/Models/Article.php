@@ -8,19 +8,23 @@ use App\Models\Review;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
+use App\Models\Order_item;
 use Override;
 
 class Article extends Model
 {
     use Searchable;
 
-    protected $fillable = [
-        "title",
-        "description",
-        "price",
-        "category_id",
-        "user_id",
-    ];
+   protected $fillable = [
+    "title",
+    "description",
+    "price",
+    "category_id",
+    "user_id",
+    "is_accepted",
+    "revisor_id",
+    "thumbnail",
+];
 
     public function category(): BelongsTo{
        return $this->belongsTo(Category::class);
@@ -66,8 +70,8 @@ class Article extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function orderItems()
+    public function order_items()
 {
-    return $this->hasMany(OrderItem::class);
+    return $this->hasMany(Order_Item::class);
 }
 }
