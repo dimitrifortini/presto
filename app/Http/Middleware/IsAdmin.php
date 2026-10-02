@@ -19,6 +19,6 @@ class IsAdmin
        if (Auth::check() && Auth::user()->is_admin) {
             return $next($request);
         }
-        return redirect()->route("home")->with("errorMessage","Zona riservata all'amministratore")->withFragment("adminErrorMessage");
+        return redirect()->route("home")->with("errorMessage","Zona riservata all'amministratore")->withFragment("errorMessage");
     }
 }

@@ -32,18 +32,6 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-        ],[
-            "name.required"=> "Il nome è obbligatorio",
-            "name.string"=> "Il nome può essere composto solo da lettere",
-            "name.max"=> "Il nome ha troppi caratteri",
-            'email.required'=>" La mail è obbligatoria",
-            'email.string'=>" La mail deve contere solo caratteri validi",
-            'email.email'=>" La mail deve avere @",
-            'email.max'=>" La mail ha troppi caratteri",
-            "password.required"=>"La password è obbligatoria",
-            "password.string"=>"La password deve contenere solo caratteri validi",
-            "password.confirmed"=>"La password non combacia",
-            
         ])->validate();
 
         return User::create([

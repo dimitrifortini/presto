@@ -9,18 +9,12 @@
     --dgray: rgb(37, 37, 37);
 }
 
-
 /* =========================================================
    GENERAL
 ========================================================= */
 
 body {
-    background: linear-gradient(
-        135deg,
-        #fffef2 0%,
-        #f7f5e9 50%,
-        #fffef2 100%
-    );
+    background: linear-gradient(135deg, #fffef2 0%, #f7f5e9 50%, #fffef2 100%);
 }
 
 * {
@@ -105,7 +99,63 @@ h4,
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* =========================================================
+   BACKGROUNDS
+========================================================= */
+.bg-category {
+    height: 40vh;
+    position: relative;
+    overflow: hidden;
 
+    background: #55534d;
+}
+
+/* Luce superiore destra */
+.bg-category::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    top: -350px;
+    right: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(130, 124, 105, 0.65);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+/* Zona più scura in basso a sinistra */
+.bg-category::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    bottom: -350px;
+    left: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(45, 45, 42, 0.55);
+
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+.bg-category > * {
+    position: relative;
+    z-index: 1;
+}
 /* =========================================================
    BUTTONS
 ========================================================= */
@@ -156,7 +206,6 @@ h4,
     margin-top: 200px;
 }
 
-
 /* =========================================================
    UTILITIES
 ========================================================= */
@@ -187,7 +236,6 @@ h4,
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: var(--dgray);
 }
-
 
 /* =========================================================
    NAVBAR
@@ -325,7 +373,6 @@ h4,
     width: 100%;
 }
 
-
 /* =========================================================
    CARD
 ========================================================= */
@@ -370,7 +417,6 @@ h4,
     text-decoration: none;
 }
 
-
 /* =========================================================
    HOMEPAGE
 ========================================================= */
@@ -393,7 +439,6 @@ h4,
     color: var(--wh);
     background-color: var(--dgray);
 }
-
 
 /* =========================================================
    SWIPER
@@ -426,7 +471,7 @@ h4,
 
 .mySwiper2 {
     width: 100%;
-    height: 550px;
+    max-height: 650px;
 }
 
 .mySwiper2 .swiper-slide {
@@ -502,7 +547,6 @@ h4,
     cursor: grabbing;
 }
 
-
 /* =========================================================
    LOGIN / REGISTER
 ========================================================= */
@@ -525,7 +569,6 @@ h4,
     box-shadow: 0 0 0 0.2rem rgba(51, 51, 51, 0.15);
 }
 
-
 /* =========================================================
    PROFILE
 ========================================================= */
@@ -533,7 +576,6 @@ h4,
 .pack {
     height: 100px;
 }
-
 
 /* =========================================================
    ARTICLE SHOW / REVISOR
@@ -569,7 +611,6 @@ h4,
     border-color: #275a42;
     color: var(--wh);
 }
-
 
 /* =========================================================
    ACCORDION SHOW
@@ -702,7 +743,6 @@ h4,
     margin-bottom: 40px;
 }
 
-
 /* =========================================================
    REVIEWS
 ========================================================= */
@@ -750,7 +790,6 @@ h4,
     max-width: 450px;
 }
 
-
 /* Reviews inside mobile accordion */
 
 .mobile-body .review-card {
@@ -790,7 +829,6 @@ h4,
     font-size: 0.95rem;
 }
 
-
 /* =========================================================
    CART
 ========================================================= */
@@ -805,7 +843,6 @@ h4,
     max-width: 100px;
     max-height: 100px;
 }
-
 
 /* =========================================================
    ORDER
@@ -887,7 +924,6 @@ h4,
     margin-bottom: 20px;
 }
 
-
 /* =========================================================
    ORDER INDEX
 ========================================================= */
@@ -902,7 +938,6 @@ h4,
     box-shadow: 4px 4px 10px rgba(51, 51, 51, 0.25) !important;
     background-color: transparent;
 }
-
 
 /* =========================================================
    ADMIN INDEX
@@ -933,7 +968,6 @@ h4,
 .admin-orders-table tbody tr.order-main {
     border-bottom: 1px solid rgba(51, 51, 51, 0.15);
 }
-
 
 /* Status */
 
@@ -972,7 +1006,6 @@ h4,
     color: #814848;
 }
 
-
 /* Details button */
 
 .order-details-btn {
@@ -993,7 +1026,6 @@ h4,
     transform: translateY(-1px);
 }
 
-
 /* Open / close */
 
 .details-close {
@@ -1012,7 +1044,6 @@ h4,
     filter: brightness(1.2);
 }
 
-
 /* Order detail */
 
 .order-detail {
@@ -1027,7 +1058,6 @@ h4,
     font-size: 1.15rem;
 }
 
-
 /* Products */
 
 .order-product {
@@ -1039,7 +1069,6 @@ h4,
     border-top: 1px solid rgba(51, 51, 51, 0.12);
 }
 
-
 /* Total */
 
 .order-total {
@@ -1050,7 +1079,6 @@ h4,
     padding-top: 0.75rem;
     font-size: 1rem;
 }
-
 
 /* Status form */
 
@@ -1089,7 +1117,6 @@ h4,
     transform: translateY(-1px);
 }
 
-
 /* =========================================================
    FORM CREATE
 ========================================================= */
@@ -1102,29 +1129,16 @@ h4,
     width: 120px;
 }
 
-
 /* =========================================================
    CATEGORY
 ========================================================= */
 
-.bg-category {
-    height: 40vh;
-    background-image:
-        linear-gradient(
-            rgba(51, 51, 51, 0.5),
-            rgba(51, 51, 51, 0.5)
-        ),
-        url(https://picsum.photos/1000/4000);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
 
 .category-title {
     letter-spacing: 0.05em;
     line-height: 1.25;
 }
-
 
 /* =========================================================
    FOOTER
@@ -1156,13 +1170,11 @@ footer hr {
     opacity: 0.15;
 }
 
-
 /* =========================================================
    RESPONSIVE - MAX 1200
 ========================================================= */
 
 @media screen and (max-width: 1200px) {
-
     .navbar {
         background-color: var(--blk);
         position: relative;
@@ -1183,13 +1195,11 @@ footer hr {
     }
 }
 
-
 /* =========================================================
    RESPONSIVE - MAX 992
 ========================================================= */
 
 @media screen and (max-width: 992px) {
-
     .swiper-slide-image {
         height: 250px;
     }
@@ -1211,13 +1221,11 @@ footer hr {
     }
 }
 
-
 /* =========================================================
    RESPONSIVE - TABLET
 ========================================================= */
 
 @media screen and (min-width: 768px) and (max-width: 991.98px) {
-
     /* Reviews */
 
     .review-card {
@@ -1238,28 +1246,25 @@ footer hr {
 
     /* Admin */
 
-    .admin-desktop {
-        display: none;
-    }
-
-    .admin-tablet {
-        display: block;
-    }
-
     .admin-tablet .admin-orders-table th,
     .admin-tablet .admin-orders-table td {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
     }
-}
 
+    .m-revisor-tablet {
+        margin-top: 80px;
+    }
+    .m-show-tablet {
+        margin-top: 100px;
+    }
+}
 
 /* =========================================================
    RESPONSIVE - MAX 767
 ========================================================= */
 
 @media screen and (max-width: 767.98px) {
-
     /* Reviews */
 
     .category-title {
@@ -1326,16 +1331,9 @@ footer hr {
         margin-top: 1.5rem !important;
     }
 
-
     /* Admin */
 
-    .admin-desktop,
-    .admin-tablet {
-        display: none;
-    }
-
     .admin-mobile {
-        display: block;
         padding: 1rem;
     }
 
@@ -1368,7 +1366,6 @@ footer hr {
         margin-top: 1.25rem;
     }
 
-
     /* Order detail */
 
     .order-detail {
@@ -1380,7 +1377,6 @@ footer hr {
         gap: 1rem;
         flex-wrap: wrap;
     }
-
 
     /* Status form */
 
@@ -1395,13 +1391,11 @@ footer hr {
     }
 }
 
-
 /* =========================================================
    RESPONSIVE - MAX 576
 ========================================================= */
 
 @media screen and (max-width: 576px) {
-
     .logo {
         max-width: 150px;
     }
@@ -1430,15 +1424,19 @@ footer hr {
         top: 0;
         right: 0;
     }
+    .m-revisor-mobile {
+        margin-top: 64px;
+    }
+    .m-show-mobile {
+        margin-top: 150px;
+    }
 }
-
 
 /* =========================================================
    RESPONSIVE - DESKTOP
 ========================================================= */
 
 @media screen and (min-width: 992px) {
-
     .header-title-position {
         top: 60%;
     }
@@ -1452,13 +1450,11 @@ footer hr {
     }
 }
 
-
 /* =========================================================
    RESPONSIVE - XL
 ========================================================= */
 
 @media screen and (min-width: 1200px) {
-
     .navbar {
         position: relative;
     }
@@ -1499,13 +1495,11 @@ footer hr {
     }
 }
 
-
 /* =========================================================
    RESPONSIVE - 1199 / 1536
 ========================================================= */
 
 @media screen and (min-width: 1199px) and (max-width: 1536px) {
-
     .btn-header {
         display: none;
     }

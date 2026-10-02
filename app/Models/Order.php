@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        "user_id",
-        "total",
-        "status",
+        
         "shipping_address",
         "payment_method",
-        "cancelled_at"
+        
     ];
        public function user():BelongsTo
 {

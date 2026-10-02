@@ -2,29 +2,31 @@
 
 namespace App\Mail;
 
+use App\Models\Article;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\User;
 
-class BecomeRevisor extends Mailable
+
+class RejectReason extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    
-    public function __construct(User $user)
+    public $article;
+    public $reason;
+    public function __construct(Article $article,?string $reason)
     {
-        $this->user= $user;
+        $this->article=$article;
+        $this->reason =$reason;
     }
 
-    
+   
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Rendi revisore l'utente" .$this->user->name,
+            subject: 'Reject Reason',
         );
     }
 
@@ -32,7 +34,7 @@ class BecomeRevisor extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.become-revisor',
+            view: 'mail.reject-reason',
         );
     }
 

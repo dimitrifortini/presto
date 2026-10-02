@@ -1,4 +1,3 @@
-```blade
 @section('navbar-position', 'position-absolute')
 
 <x-layout>
@@ -10,7 +9,7 @@
 
                 <header class="bg-category d-flex align-items-end">
                     <h1 class="fw-bold text-wh category-title pb-2 ps-4 display-4">
-                        I tuoi ordini
+                        {{ __('ui.your_orders') }}
                     </h1>
                 </header>
 
@@ -29,7 +28,6 @@
                     @foreach ($orders as $order)
                         <div class="accordion-item bg-transparent border-0 mb-3 mb-md-4">
 
-                            {{-- HEADER ORDINE --}}
                             <h2 class="accordion-header">
 
                                 <button
@@ -40,11 +38,10 @@
 
                                     <div class="row w-100 me-2 me-md-3 align-items-center">
 
-                                        {{-- ORDINE --}}
                                         <div class="col-6 col-lg-3">
 
                                             <span class="d-block d-sm-inline">
-                                                Ordine:
+                                                {{ __('ui.order') }}:
                                             </span>
 
                                             <strong class="text-blk fw-semibold">
@@ -54,42 +51,42 @@
                                         </div>
 
 
-                                        {{-- DATA --}}
                                         <div class="col-6 col-lg-3 text-end text-lg-start">
 
-                                            {{ $order->created_at->format('d F Y') }}
+                                            <time datetime="{{ $order->created_at->toISOString() }}">
+                                                {{ $order->created_at->format('d F Y') }}
+                                            </time>
 
                                         </div>
 
 
-                                        {{-- STATO --}}
                                         <div class="col-6 col-lg-3 mt-2 mt-lg-0">
 
                                             <span class="d-block d-sm-inline">
-                                                Stato:
+                                                {{ __('ui.status') }}:
                                             </span>
 
                                             <span class="order-status status-{{ $order->status }}">
 
                                                 @switch($order->status)
                                                     @case('pending')
-                                                        In attesa
+                                                        {{ __('ui.pending') }}
                                                     @break
 
                                                     @case('confirmed')
-                                                        Confermato
+                                                        {{ __('ui.confirmed') }}
                                                     @break
 
                                                     @case('shipped')
-                                                        In spedizione
+                                                        {{ __('ui.shipped') }}
                                                     @break
 
                                                     @case('delivered')
-                                                        Consegnato
+                                                        {{ __('ui.delivered') }}
                                                     @break
 
                                                     @case('cancelled')
-                                                        Cancellato
+                                                        {{ __('ui.cancelled') }}
                                                     @break
 
                                                     @default
@@ -101,11 +98,10 @@
                                         </div>
 
 
-                                        {{-- TOTALE --}}
                                         <div class="col-6 col-lg-3 text-end mt-2 mt-lg-0">
 
                                             <span class="d-block d-sm-inline">
-                                                Totale:
+                                                {{ __('ui.total') }}:
                                             </span>
 
                                             <strong class="text-blk fw-semibold">
@@ -121,62 +117,57 @@
                             </h2>
 
 
-                            {{-- DETTAGLI ORDINE --}}
                             <div id="collapse{{ $order->id }}" class="accordion-collapse collapse"
                                 data-bs-parent="#accordionIndexOrders">
 
                                 <div class="accordion-body px-1 px-sm-2 px-md-3 pt-3 pb-2">
 
                                     @foreach ($order->order_items as $item)
-                                        <div class="border rounded-3 shadow-sm mb-4 p-3 p-md-4">
+                                        <article class="border rounded-3 shadow-sm mb-4 p-3 p-md-4">
 
                                             <div
                                                 class="d-flex flex-wrap flex-xl-nowrap align-items-center gap-3 gap-md-4">
 
-                                                {{-- IMMAGINE --}}
                                                 <a href="{{ route('article.show', $item->article) }}"
                                                     class="flex-shrink-0 square-100">
 
                                                     @if ($item->article->images->isNotEmpty())
                                                         <img src="{{ $item->article->images->first()->getUrl(300, 300) }}"
-                                                            alt="Immagine di prodotto"
+                                                            alt="{{ __('ui.product_image') }}: {{ $item->article->title }}"
                                                             class="w-100 h-100 object-fit-cover rounded-2">
                                                     @else
-                                                        <img src="/media/placeholder-show/1.png"
-                                                            alt="Immagine di prodotto"
+                                                        <img src="/media/placeholder-show/1.png" alt=""
                                                             class="w-100 h-100 object-fit-cover rounded-2">
                                                     @endif
 
                                                 </a>
 
 
-                                                {{-- INFO PRODOTTO --}}
                                                 <div class="flex-grow-1">
 
-                                                    <h5 class="fw-semibold mb-2">
+                                                    <h3 class="fw-semibold mb-2">
                                                         {{ $item->article->title }}
-                                                    </h5>
+                                                    </h3>
 
                                                     <div class="text-secondary small mb-1">
-                                                        Quantità: {{ $item->quantity }}
+                                                        {{ __('ui.quantity') }}: {{ $item->quantity }}
                                                     </div>
 
                                                     <div>
                                                         {{ number_format($item->price, 2, ',', '.') }} €
 
                                                         <span class="text-secondary small">
-                                                            / pezzo
+                                                            {{ __('ui.per_piece') }}
                                                         </span>
                                                     </div>
 
                                                 </div>
 
 
-                                                {{-- SUBTOTALE --}}
                                                 <div class="text-end ms-auto w-100 w-lg-auto mt-2 mt-lg-0">
 
                                                     <span class="text-secondary small d-block mb-1">
-                                                        Subtotale
+                                                        {{ __('ui.subtotal') }}
                                                     </span>
 
                                                     <span class="fw-bold">
@@ -188,7 +179,7 @@
 
                                             </div>
 
-                                        </div>
+                                        </article>
                                     @endforeach
 
                                 </div>

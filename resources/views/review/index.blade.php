@@ -8,7 +8,7 @@
 
                 <header class="bg-category d-flex align-items-end">
                     <h1 class="fw-bold text-wh category-title pb-2 ps-4 display-4">
-                        Le tue recensioni
+                        {{ __('ui.your_reviews') }}
                     </h1>
                 </header>
 
@@ -28,45 +28,46 @@
 
                         <div class="review-card border px-5 pt-4 rounded-1 shadow bg-wh">
 
-                            {{-- HEADER --}}
                             <div class="d-flex align-items-center">
 
                                 <div>
 
-                                    <h3 class="fw-bold mb-1">
-                                        {{ $review->article?->title ?? 'Articolo non più disponibile' }}
-                                    </h3>
+                                    <h2 class="fw-bold mb-1">
+                                        {{ $review->article?->title ?? __('ui.article_unavailable') }}
+                                    </h2>
 
                                     <small class="text-secondary">
-                                        Recensito il
-                                        {{ $review->updated_at->translatedFormat('d F Y') }}
+                                        {{ __('ui.reviewed_on') }}
+                                        <time datetime="{{ $review->updated_at->toISOString() }}">
+                                            {{ $review->updated_at->translatedFormat('d F Y') }}
+                                        </time>
                                     </small>
 
                                 </div>
 
 
-                                {{-- AZIONI --}}
                                 @if ($review->reviewer_id === auth()->id())
                                     <div class="ms-auto d-flex gap-2">
 
-                                        {{-- MATITA --}}
                                         @if ($review->article)
-                                            <button type="button" class="edit-review border-0 bg-transparent">
-                                                <i class="fa-solid fa-pencil"></i>
+                                            <button type="button"
+                                                class="edit-review border-0 bg-transparent"
+                                                aria-label="{{ __('ui.edit') }}">
+                                                <i class="fa-solid fa-pencil" aria-hidden="true"></i>
                                             </button>
                                         @endif
 
-
-                                        {{-- CESTINO --}}
-                                        <button type="button" class="delete-review border-0 bg-transparent"
-                                            data-delete-url="{{ route('review.destroy', $review) }}">
-                                            <i class="fa-solid fa-trash"></i>
+                                        <button type="button"
+                                            class="delete-review border-0 bg-transparent"
+                                            data-delete-url="{{ route('review.destroy', $review) }}"
+                                            aria-label="{{ __('ui.delete') }}">
+                                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
                                         </button>
 
-
-                                        {{-- X --}}
-                                        <button type="button" class="cancel-review border-0 bg-transparent d-none">
-                                            <i class="fa-solid fa-xmark"></i>
+                                        <button type="button"
+                                            class="cancel-review border-0 bg-transparent d-none"
+                                            aria-label="{{ __('ui.cancel') }}">
+                                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                                         </button>
 
                                     </div>
@@ -74,26 +75,25 @@
 
                             </div>
 
-
-                            {{-- VISUALIZZAZIONE --}}
                             <div class="review-display">
 
                                 <div class="row align-items-center mt-4">
 
-                                    {{-- RATING --}}
                                     <div class="col-md-3">
 
                                         <div class="mb-2 text-secondary small">
-                                            Valutazione
+                                            {{ __('ui.rating') }}
                                         </div>
 
                                         <div class="d-flex gap-1">
 
                                             @for ($i = 1; $i <= 5; $i++)
                                                 @if ($i <= $review->rating)
-                                                    <i class="fa-solid fa-star yellow_star"></i>
+                                                    <i class="fa-solid fa-star yellow_star"
+                                                        aria-hidden="true"></i>
                                                 @else
-                                                    <i class="fa-regular fa-star text-muted"></i>
+                                                    <i class="fa-regular fa-star text-muted"
+                                                        aria-hidden="true"></i>
                                                 @endif
                                             @endfor
 
@@ -102,11 +102,10 @@
                                     </div>
 
 
-                                    {{-- RECENSIONE --}}
                                     <div class="col-md-9">
 
                                         <div class="mb-2 text-secondary small">
-                                            La tua recensione
+                                            {{ __('ui.your_review') }}
                                         </div>
 
                                         <p class="mb-0 fs-5 review-text">
@@ -120,7 +119,6 @@
                             </div>
 
 
-                            {{-- MODIFICA --}}
                             @if ($review->article)
                                 <div class="review-edit d-none">
 
@@ -135,23 +133,36 @@
                                         @method('PUT')
 
 
-                                        <textarea name="content" class="bg-wh w-100 px-3 py-3 mt-3 rounded-1" rows="5">{{ $review->content }}</textarea>
+                                        <label for="review-content-{{ $review->id }}" class="visually-hidden">
+                                            {{ __('ui.your_review') }}
+                                        </label>
+
+                                        <textarea
+                                            id="review-content-{{ $review->id }}"
+                                            name="content"
+                                            class="bg-wh w-100 px-3 py-3 mt-3 rounded-1"
+                                            rows="5">{{ $review->content }}</textarea>
 
 
                                         <div class="mt-3">
 
-                                            <label class="mb-3">
-                                                Modifica valutazione
+                                            <label for="rating-{{ $review->id }}" class="mb-3">
+                                                {{ __('ui.edit_rating') }}
                                             </label>
 
                                             <div class="rating mb-3">
 
                                                 @for ($i = 1; $i <= 5; $i++)
                                                     <i class="fa-star {{ $i <= $review->rating ? 'fa-solid yellow_star' : 'fa-regular' }}"
-                                                        data-rating="{{ $i }}"></i>
+                                                        data-rating="{{ $i }}"
+                                                        aria-hidden="true"></i>
                                                 @endfor
 
-                                                <input type="hidden" name="rating" value="{{ $review->rating }}">
+                                                <input
+                                                    type="hidden"
+                                                    id="rating-{{ $review->id }}"
+                                                    name="rating"
+                                                    value="{{ $review->rating }}">
 
                                             </div>
 
@@ -161,7 +172,7 @@
                                         <div class="mt-3 d-flex justify-content-center">
 
                                             <button type="submit" class="btn btn-submit">
-                                                Modifica
+                                                {{ __('ui.edit') }}
                                             </button>
 
                                         </div>
@@ -172,9 +183,11 @@
                             @endif
 
 
-                            {{-- DATA --}}
                             <p class="text-muted fs-6 text-end mt-3 mb-3">
-                                Aggiornato il {{ $review->updated_at->translatedFormat('d F Y') }}
+                                {{ __('ui.updated_on') }}
+                                <time datetime="{{ $review->updated_at->toISOString() }}">
+                                    {{ $review->updated_at->translatedFormat('d F Y') }}
+                                </time>
                             </p>
 
                         </div>
@@ -185,11 +198,13 @@
             </div>
 
         </main>
+
     @else
+
         <main class="container">
 
             <h2 class="h1 text-center fw-bold my-5">
-                Non hai ancora scritto recensioni.
+                {{ __('ui.no_reviews') }}
             </h2>
 
         </main>
@@ -204,13 +219,15 @@
         <div class="delete-popup-content shadow">
 
             <p class="mb-4">
-                Sei sicuro di voler eliminare questa recensione?
+                {{ __('ui.delete_review_confirm') }}
             </p>
 
             <div class="d-flex justify-content-end gap-2">
 
-                <button type="button" id="cancelDeleteProfile" class="btn btn-secondary">
-                    Annulla
+                <button type="button"
+                    id="cancelDeleteProfile"
+                    class="btn btn-secondary">
+                    {{ __('ui.cancel') }}
                 </button>
 
 
@@ -220,7 +237,7 @@
                     @method('DELETE')
 
                     <button type="submit" class="btn btn-danger">
-                        Elimina
+                        {{ __('ui.delete') }}
                     </button>
 
                 </form>

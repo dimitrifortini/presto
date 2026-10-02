@@ -2,7 +2,7 @@
     @csrf
     <button type="submit" class="dropdown-item d-flex align-items-center gap-2 py-1">
         <img src="{{ asset('vendor/blade-flags/country-' . $lang . '.svg') }}" width="20" height="20"
-            alt="bandiera lingua">
+            alt="">
         <span>
             @switch($lang)
                 @case('it')

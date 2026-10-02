@@ -9,16 +9,16 @@ return new class extends Migration
    
     public function up(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dateTime("cancelled_at")->nullable();
+        Schema::table('articles', function (Blueprint $table) {
+            $table->boolean("is_active")->default(true);
         });
     }
 
-    
+   
     public function down(): void
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn("cancelled_at");
+        Schema::table('articles', function (Blueprint $table) {
+            $table->dropColumn("is_active");
         });
     }
 };

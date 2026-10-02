@@ -19,10 +19,7 @@ class Article extends Model
     "title",
     "description",
     "price",
-    "category_id",
-    "user_id",
-    "is_accepted",
-    "revisor_id",
+    "category_id",    
     "thumbnail",
 ];
 

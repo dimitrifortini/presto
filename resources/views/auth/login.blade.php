@@ -6,12 +6,12 @@
 
                 <form class="form-box " action="{{ route('login.store') }}" method="POST">
                     <div class="mt-4 mb-4">
-                        <h2 class="text-center fw-semibold h1 ">{{ __('ui.login') }}</h2>
+                        <h1 class="text-center fw-semibold  ">{{ __('ui.login') }}</h1>
                         <p class="text-secondary text-center">{{ __('ui.welcome_back') }}!</p>
                     </div>
                     @csrf
                     <div class="mb-4">
-                        <label for="loginMail" class="form-label">Email</label>
+                        <label for="loginMail" class="form-label">{{__("ui.email")}}</label>
                         <input type="email" name="email" placeholder="{{ __('ui.insert_email') }}"
                             class="form-control shadow " id="loginMail">
                         @error('email')
@@ -19,7 +19,7 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="loginPassword" class="form-label">Password</label>
+                        <label for="loginPassword" class="form-label">{{__("ui.password")}}</label>
                         <input type="password" name="password" placeholder="{{ __('ui.insert_password') }}"
                             class="form-control shadow" id="loginPassword">
                         @error('password')

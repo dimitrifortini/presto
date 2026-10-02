@@ -22,13 +22,13 @@ class EditArticleForm extends Component
 
     public $article;
     public $category;
-    #[Validate('required', message: "Il campo è obbligatorio.")]
+    #[Validate('required')]
     public $title;
-    #[Validate('required', message: "Il campo è obbligatorio.")]
+    #[Validate('required')]
     public $description;
-    #[Validate('required', message: "Il campo è obbligatorio.")]
+    #[Validate('required')]
     public $price ;
-    #[Validate('required', message: "Seleziona almeno una categoria.")]
+    #[Validate('required')]
     public $category_id;
     public $user_id;
     public $images=[];
@@ -36,6 +36,9 @@ class EditArticleForm extends Component
     public $temporary_images;
 
     public function mount(Article $article){
+        if (auth()->id()!==$article->user->id && !auth()->user()->is_admin) {
+            abort(403);
+        }
         $this->article = $article;
         $this->title= $article->title;
         $this->description= $article->description;
@@ -46,6 +49,10 @@ class EditArticleForm extends Component
 
     public function update()
     {
+        if (auth()->id()!==$this->article->user->id && !auth()->user()->is_admin) {
+            abort(403);
+        }
+
         $this->validate();
 
 
@@ -61,11 +68,7 @@ class EditArticleForm extends Component
         if (count($this->images) >0) {
             foreach ($this->images as $image) {
                 $newFileName="articles/{$this->article->id}";
-                $newImage= $this->article->images()->create(["path"=> $image->store($newFileName,"public")]);
-                // dispatch(new ResizeImage($newImage->path,300,300));
-                // dispatch(new GoogleVisionSafeSearch($newImage->id));
-                // dispatch(new GoogleVisionLabelImage($newImage->id));
-                // dispatch(new RemoveFaces($newImage->id));
+                $newImage= $this->article->images()->create(["path"=> $image->store($newFileName,"public")]);               
                 RemoveFaces::withChain([
                     new ResizeImage($newImage->path,300,300),
                     new GoogleVisionSafeSearch($newImage->id),
@@ -76,7 +79,7 @@ class EditArticleForm extends Component
             }
             File::deleteDirectory(storage_path("/app/livewire-tmp"));
         }
-        session()->flash("message", "Annuncio modificato con successo.");
+        session()->flash("message", __("ui.announce_update"));
         
     }
 
@@ -109,6 +112,9 @@ class EditArticleForm extends Component
     }
 
     public function removeExistingImage($id){
+        if (auth()->id()!==$this->article->user->id && !auth()->user()->is_admin) {
+            abort(403);
+        }
         $image=$this->article->images()->find($id);
         if ($image) {
             $image->delete();

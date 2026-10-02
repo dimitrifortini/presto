@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Article;
 class Cart extends Model
 {
-    protected $fillable = [
-        "user_id",
+    protected $fillable = [        
         "article_id",
         "quantity",
 

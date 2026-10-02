@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Http;
 use App\Models\Category;
 use App\Models\Article;
@@ -11,11 +11,16 @@ use App\Models\Review;
 
 class DummyJsonController extends Controller
 {
-
     public function import()
     {
         $dummy = Http::get("https://dummyjson.com/products");
+
+        if (!$dummy->successful()) {
+            return redirect()->back()->with("error_message", "Importazione non riuscita.");
+        }
+
         $products = $dummy->json()["products"];
+
         $categoryMap = [
             "beauty" => "Salute e Bellezza",
             "fragrances" => "Salute e Bellezza",
@@ -48,10 +53,13 @@ class DummyJsonController extends Controller
             "vehicle" => "Motori",
         ];
 
-
         foreach ($products as $product) {
 
             if ($product["category"] === "groceries") {
+                continue;
+            }
+
+            if (!isset($categoryMap[$product["category"]])) {
                 continue;
             }
 
@@ -59,30 +67,41 @@ class DummyJsonController extends Controller
 
             $category = Category::where("name", $categoryName)->first();
 
+            if (!$category) {
+                continue;
+            }
+
             $article = Article::create([
                 "title" => $product["title"],
                 "description" => $product["description"],
                 "price" => $product["price"],
                 "category_id" => $category->id,
-                "user_id" => null,
-                "is_accepted" => true,
-                "revisor_id" => null,
                 "thumbnail" => $product["thumbnail"],
             ]);
+
+            $article->user_id = null;
+            $article->is_accepted = true;
+            $article->revisor_id = null;
+            $article->save();
+
             foreach ($product["images"] as $image) {
-                Image::create([
+                $imageModel = Image::create([
                     "path" => $image,
-                    "article_id" => $article->id,
                 ]);
+
+                $imageModel->article_id = $article->id;
+                $imageModel->save();
             }
+
             foreach ($product["reviews"] as $review) {
-                Review::create([
+                $reviewModel=Review::create([
                     "content" => $review["comment"],
                     "reviewer_id" => null,
-                    "reviewer_name" => $review["reviewerName"],
-                    "article_id" => $article->id,
+                    "reviewer_name" => $review["reviewerName"],                    
                     "rating" => $review["rating"],
                 ]);
+                $reviewModel->article_id = $article->id;
+                $reviewModel->save();
             }
         }
     }

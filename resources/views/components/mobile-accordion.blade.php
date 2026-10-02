@@ -1,6 +1,11 @@
-<section class="mobile-accordion d-lg-none">
+<section class="mobile-accordion d-lg-none m-show-tablet">
 
-    {{-- DESCRIZIONE --}}
+    @if (session('reviewMessage'))
+        <div class="alert alert-success text-center" role="alert">
+            {{ session('reviewMessage') }}
+        </div>
+    @endif
+
     <div class="mobile-item active">
 
         <button class="mobile-header">
@@ -13,20 +18,12 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
-
     @if (!request()->routeIs('revisor.index'))
-        {{-- RECENSIONI --}}
+
         <div class="mobile-item">
 
             <button class="mobile-header">
-                <span>Recensioni</span>
+                <span>{{ __('ui.reviews') }}</span>
                 <span class="mobile-icon">+</span>
             </button>
 
@@ -36,7 +33,7 @@
                         data-bs-target="#reviewMobileModal">
 
                         <i class="fa-solid fa-plus"></i>
-                        Aggiungi una recensione
+                        {{ __('ui.add_review') }}
 
                     </button>
                 @endauth
@@ -45,7 +42,7 @@
                 @foreach ($reviews as $review)
                     <div class="review-card border ps-3  pe-1 py-3 mb-3 rounded-1 shadow bg-wh">
 
-                        {{-- HEADER RECENSIONE --}}
+
                         <div class="d-flex align-items-center">
 
                             <h5 class="fw-bold mb-0">
@@ -65,7 +62,7 @@
                             </span>
 
 
-                            {{-- AZIONI --}}
+
                             @if ($review->user && auth()->id() == $review->user->id)
                                 <div class="ms-auto d-flex ">
 
@@ -95,8 +92,6 @@
 
                         </div>
 
-
-                        {{-- VISUALIZZAZIONE --}}
                         <div class="review-display">
 
                             <p class="mt-3 mb-0 review-text ps-1 pe-3 ">
@@ -105,9 +100,9 @@
 
                         </div>
 
-
-                        {{-- MODIFICA --}}
-                        @if (($review->user && auth()->id() == $review->user->id) || auth()->user()->isRevisor || auth()->user()->isAdmin)
+                        @if (
+                            ($review->user && auth()->id() == $review->user->id) ||
+                                (auth()->check() && (auth()->user()->isRevisor || auth()->user()->isAdmin)))
                             <div class="review-edit d-none">
 
                                 <form
@@ -127,7 +122,7 @@
                                     <div class="mt-3">
 
                                         <label class="mb-2">
-                                            Modifica valutazione
+                                            {{ __('ui.edit_rating') }}
                                         </label>
 
                                         <div class="rating mb-3">
@@ -150,7 +145,7 @@
 
                                         <button type="submit" class="btn btn-submit">
 
-                                            Modifica
+                                            {{ __('ui.edit') }}
 
                                         </button>
 
@@ -163,7 +158,7 @@
 
 
                         <p class="text-muted text-center fs-6 text-end mt-3 mb-0">
-                            Aggiunto il {{ $review->updated_at->translatedFormat('d F Y') }}
+                            {{ __('ui.added_on') }} {{ $review->updated_at->translatedFormat('d F Y') }}
                         </p>
 
                     </div>
@@ -181,13 +176,13 @@
     <div class="delete-popup-content shadow">
 
         <p class="mb-4">
-            Sei sicuro di voler eliminare questa recensione?
+            {{ __('ui.delete_review_confirm') }}
         </p>
 
         <div class="d-flex justify-content-end gap-2">
 
             <button type="button" id="cancelDeleteMobile" class="btn btn-secondary">
-                Annulla
+                {{ __('ui.cancel') }}
             </button>
 
             <form id="deleteReviewFormMobile" method="POST">
@@ -196,7 +191,7 @@
                 @method('DELETE')
 
                 <button type="submit" class="btn btn-danger">
-                    Elimina
+                    {{ __('ui.delete') }}
                 </button>
 
             </form>
@@ -213,14 +208,14 @@
     <div class="modal-dialog">
         <div class="modal-content bg-wh text-blk">
             <div class="modal-header">
-                <h2 class="modal-title  fs-5 h1" id="reivewModalMobileLabel">Aggiungi una nuova recensione</h2>
+                <h2 class="modal-title  fs-5 h1" id="reivewModalMobileLabel">{{ __('ui.add_new_review') }}</h2>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('review.store', compact('article')) }}" method="POST" id="reviewFormMobile">
                     @csrf
                     <div class="rating mt-3 mb-5">
-                        <h5 class="mb-3">Valutazione:</h5>
+                        <h5 class="mb-3">{{ __('ui.rating') }}:</h5>
                         <i class="fa-regular fa-star" data-rating="1"></i>
                         <i class="fa-regular fa-star" data-rating="2"></i>
                         <i class="fa-regular fa-star" data-rating="3"></i>
@@ -228,14 +223,14 @@
                         <i class="fa-regular fa-star" data-rating="5"></i>
                         <input type="hidden" name="rating" id="ratingMobile">
                     </div>
-                    <label class="h5" for="contentMobile">Scrivi la tua recensione:</label>
+                    <label class="h5" for="contentMobile">{{ __('ui.write_review') }}:</label>
                     <textarea class="bg-wh w-100 px-3 py-2" name="content" id="contentMobile"></textarea>
 
                 </form>
             </div>
             <div class="modal-footer d-flex justify-content-center">
 
-                <button form="reviewFormMobile" type="submit" class="btn btn-submit ">Aggiungi</button>
+                <button form="reviewFormMobile" type="submit" class="btn btn-submit ">{{ __('ui.add') }}</button>
             </div>
         </div>
     </div>

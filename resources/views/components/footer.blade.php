@@ -5,9 +5,9 @@
 
             <!-- Brand -->
             <div class="col-lg-4">
-                <h3 class="fw-bold text-white mb-3">
+                <h2 class="fw-bold text-white mb-3 h3">
                     </i>Presto.it
-                </h3>
+                </h2>
 
                 <p class="text-secondary">
                     {{ __('ui.footer_description') }}

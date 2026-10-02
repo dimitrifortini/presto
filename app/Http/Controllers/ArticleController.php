@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Article;
 use App\Models\Category;
-use Illuminate\Http\Request;
+
 
 class ArticleController extends Controller
 {
@@ -18,18 +19,36 @@ class ArticleController extends Controller
         return view("article.my_article", compact("articles"));
     }
 
-    public function myArticleShow(Article $article){
-        return view("article.my_article_show", compact("article"));
+    public function myArticleShow(Article $article)
+    {
+        if (auth()->id() !== $article->user_id && !auth()->user()->is_admin) {
+            abort(403);
+        }
+        $reviews = $article->reviews()->latest()->get();
 
-    }    
+        return view("article.my_article_show", compact("article","reviews"));
+    }
     public function edit(Article $article)
     {
+        if (auth()->id() !== $article->user_id && !auth()->user()->is_admin) {
+
+            abort(403);
+        }
+
         return view("article.edit", compact("article"));
     }
 
-    public function delete(Article $article){
+    public function delete(Article $article)
+    {
+        if (auth()->id() !== $article->user_id && !auth()->user()->is_admin) {
+            abort(403);
+        }
+
         $article->delete();
-        return redirect()->route("article.my_article")->with("message","L'annuncio è stato eliminato correttamente!");
+
+        return redirect()
+            ->route("article.my_article")
+            ->with("message", __("ui.delete_article"));
     }
 
     public function index()
@@ -40,8 +59,8 @@ class ArticleController extends Controller
 
     public function show(Article $article)
     {
-        $reviews= $article->reviews()->latest()->get();    
-        return view("article.show", compact("article","reviews"));
+        $reviews = $article->reviews()->latest()->get();
+        return view("article.show", compact("article", "reviews"));
     }
 
     public function byCategory(Category $category)

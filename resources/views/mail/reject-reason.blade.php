@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Presto.it - Richiesta revisore</title>
+    <title>Presto.it - Articolo rifiutato</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,48 +22,45 @@
 
             <header class="header">
                 <h1>Presto.it</h1>
-                <p>Richiesta di collaborazione</p>
+                <p>Revisione dell'annuncio</p>
             </header>
 
             <main class="content">
 
-                <h2>Un utente ha chiesto di lavorare con noi</h2>
+                <h2>Il tuo articolo è stato rifiutato</h2>
 
                 <p class="intro">
-                    Un utente ha richiesto di diventare revisore di Presto.it.
+                    Il seguente annuncio non ha superato la revisione.
                 </p>
 
-                <div class="user-card">
+                <div class="article-card">
 
-                    <div class="user-info">
+                    @if ($article->thumbnail)
+                        <img src="{{ $article->thumbnail }}" alt="Immagine di {{ $article->title }}">
+                    @endif
 
-                        <span class="label">DATI DELL'UTENTE</span>
+                    <div class="article-info">
+                        <span class="label">ARTICOLO</span>
 
-                        <p>
-                            <strong>Nome</strong><br>
-                            {{ $user->name }}
-                        </p>
-
-                        <p>
-                            <strong>Email</strong><br>
-                            {{ $user->email }}
-                        </p>
-
+                        <h3>{{ $article->title }}</h3>
                     </div>
 
                 </div>
 
-                <p class="action-text">
-                    Se vuoi rendere questo utente un revisore, puoi farlo
-                    utilizzando il pulsante qui sotto.
-                </p>
+                @if ($reason)
+                    <div class="reason">
 
-                <div class="button-wrapper">
-                    <a class="btn-submit"
-                        href="{{ route('make.revisor', compact('user')) }}">
-                        Rendi revisore
-                    </a>
-                </div>
+                        <span class="label">MOTIVO DEL RIFIUTO</span>
+
+                        <p>{{ $reason }}</p>
+
+                    </div>
+                @endif
+
+                <p class="footer-text">
+                    Puoi modificare il tuo articolo e inviarlo nuovamente
+                    per la revisione.
+                </p>
 
             </main>
 
@@ -163,61 +160,66 @@
         line-height: 1.6;
     }
 
-    .user-card {
-        padding: 22px;
+    .article-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 18px;
         background-color: var(--lgray);
         border: 1px solid rgba(51, 51, 51, 0.10);
         border-radius: 18px;
     }
 
+    .article-card img {
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        object-fit: cover;
+        border-radius: 14px;
+    }
+
+    .article-info {
+        min-width: 0;
+    }
+
     .label {
         display: block;
-        margin-bottom: 15px;
+        margin-bottom: 8px;
         color: var(--secondary);
         font-size: 11px;
         font-weight: 700;
         letter-spacing: 0.12em;
     }
 
-    .user-info p {
-        margin: 0 0 15px;
-        color: var(--secondary);
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .user-info p:last-child {
-        margin-bottom: 0;
-    }
-
-    .user-info strong {
+    .article-info h3 {
+        margin: 0;
         color: var(--blk);
         font-family: 'Manrope', Arial, sans-serif;
-        font-size: 15px;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 1.3;
     }
 
-    .action-text {
-        margin: 30px 0 25px;
-        color: var(--secondary);
-        font-size: 14px;
+    .reason {
+        margin-top: 25px;
+        padding: 22px;
+        background-color: rgba(246, 245, 232, 0.65);
+        border-left: 4px solid var(--blk);
+        border-radius: 12px;
+    }
+
+    .reason p {
+        margin: 0;
+        color: var(--blk);
+        font-size: 15px;
         line-height: 1.7;
     }
 
-    .button-wrapper {
-        text-align: center;
-    }
-
-    .btn-submit {
-        display: inline-block;
-        padding: 16px 32px;
-        background-color: var(--blk);
-        color: var(--wh);
-        font-family: 'Inter', Arial, sans-serif;
-        font-size: 15px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        text-decoration: none;
-        border-radius: 999px;
+    .footer-text {
+        margin: 30px 0 0;
+        color: var(--secondary);
+        font-size: 14px;
+        line-height: 1.7;
     }
 
     .footer {
@@ -248,6 +250,19 @@
 
         .content h2 {
             font-size: 25px;
+        }
+
+        .article-card {
+            align-items: flex-start;
+        }
+
+        .article-card img {
+            width: 90px;
+            height: 90px;
+        }
+
+        .article-info h3 {
+            font-size: 17px;
         }
 
         .footer {

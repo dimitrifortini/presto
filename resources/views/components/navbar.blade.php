@@ -3,21 +3,24 @@
         <div class="row w-100 mx-0">
             <div class="col-12 d-flex justify-content-between align-items-center">
                 <a class="navbar-brand " href="{{ route('home') }}">
-                    <img src="{{ asset('media/logobianco2.png') }}" alt="logo sito"
+                    <img src="{{ asset('media/logobianco2.png') }}" alt="logo sito bianco"
                         class="img-fluid logo logo-bianco ms-md-3 mt-md-3 ">
-                    <img src="{{ asset('media/logonero2.png') }}" alt="logo sito"
+                    <img src="{{ asset('media/logonero2.png') }}" alt="logo sito nero"
                         class="img-fluid logo logo-nero ms-md-3 mt-md-3 ">
                 </a>
+
                 {{-- SEARCH --}}
                 <form action="{{ route('article.search') }}" method="GET" role="search" class="input-search">
                     <div class="input-group d-none d-xl-flex ">
-                        <button type="submit" class="btn btn-search"><i
-                                class="fa-solid fa-magnifying-glass fa-2x text-wh "></i></button>
+                        <button type="submit" class="btn btn-search" aria-label="{{ __('ui.search') }}">
+                            <i class="fa-solid fa-magnifying-glass fa-2x text-wh "></i>
+                        </button>
                         <input type="search" name="query" class="form-control input-search mb-1"
                             placeholder="{{ __('ui.search') }}" aria-label="search">
                     </div>
                 </form>
                 {{-- SEARCH END --}}
+
                 <div class="d-flex justify-content-end align-items-center  ">
                     @guest
                         <a href="{{ route('login') }}"
@@ -25,23 +28,26 @@
                         <a href="{{ route('register') }}"
                             class="text-decoration-none  d-none d-xl-flex me-3 acces">{{ __('ui.register') }}</a>
                     @endguest
+
                     @auth
                         {{-- CART SHOPPING --}}
                         <a href="{{ route('cart.index') }}"
-                            class="text-decoration-none d-xl-flex align-items-center d-none">
-                            <i class="fa-solid fa-cart-shopping fa-2x ">
-                            </i>
+                            class="text-decoration-none d-xl-flex align-items-center d-none"
+                            aria-label="{{ __('ui.cart') }}">
+                            <i class="fa-solid fa-cart-shopping fa-2x "></i>
                             @if (\App\Models\Cart::cartCount())
                                 <span
                                     class="ms-1 px-3 py-1  rounded-pill bg-secondary text-wh">{{ \App\Models\Cart::cartCount() }}</span>
                             @endif
                         </a>
+
                         {{-- USER ACCOUNT  --}}
                         <div class="dropdown d-flex align-items-end ms-2">
                             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
+                                aria-expanded="false" aria-label="{{ __('ui.my_profile') }}">
                                 <i class="fa-solid fa-circle-user fa-2x "></i>
                             </button>
+
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
                                     <p class="text-secondary mb-1 px-2">{{ ucfirst(__('ui.hello')) }},
@@ -62,19 +68,15 @@
                                             class="text-decoration-none dropdown-item  text-blk h-100">{{ __('ui.logout') }}</button>
                                     </form>
                                 </li>
-
                             </ul>
                         </div>
-
-
                     @endauth
+
                     <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa-solid fa-bars "></i>
                     </button>
-
-
 
                     <div class="dropdown d-none d-xl-flex align-items-center">
                         <button class="btn dropdown-toggle d-flex align-items-center gap-1" type="button"
@@ -83,25 +85,24 @@
                             @switch(app()->getLocale())
                                 @case('it')
                                     <img src="{{ asset('vendor/blade-flags/country-it.svg') }}" width="20" height="20"
-                                        alt="Italiano">
+                                        alt="">
                                     <span>IT</span>
                                 @break
 
                                 @case('uk')
                                     <img src="{{ asset('vendor/blade-flags/country-uk.svg') }}" width="20" height="20"
-                                        alt="English">
+                                        alt="">
                                     <span>EN</span>
                                 @break
 
                                 @case('es')
                                     <img src="{{ asset('vendor/blade-flags/country-es.svg') }}" width="20" height="20"
-                                        alt="Español">
+                                        alt="">
                                     <span>ES</span>
                                 @break
                             @endswitch
 
                         </button>
-
 
                         <ul class="dropdown-menu dropdown-menu-end p-2">
                             <li>
@@ -116,22 +117,20 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
+
             {{-- SECOND ROW --}}
             <div class="col-12  ">
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <x-search></x-search>
 
-
                     <ul class="navbar-nav  mb-2 mb-lg-0 d-flex justify-content-between  w-100 align-items-start">
-
 
                         <x-xl-navbar></x-xl-navbar>
 
-
                         <li class="nav-item ">
-                            <a class="nav-link" aria-current="page" href="{{ route('home') }}">{{ __('ui.home') }}</a>
+                            <a class="nav-link" aria-current="page"
+                                href="{{ route('home') }}">{{ __('ui.home') }}</a>
                         </li>
 
                         @auth
@@ -147,40 +146,44 @@
 
                             @if (Auth::user()->is_admin)
                                 <li class="nav-item ">
-                                    <a class="nav-link text-wh " href="{{ route('admin.index') }}">Zona Amministratore
-
-                                    </a>
+                                    <a class="nav-link text-wh "
+                                        href="{{ route('admin.index') }}">{{ __('ui.admin_area') }} </a>
                                 </li>
                             @endif
                         @endauth
-
 
                         <li class="nav-item ">
                             <a class="nav-link text-wh "
                                 href="{{ route('article.index') }}">{{ __('ui.all_articles') }}</a>
                         </li>
+
                         @auth
                             <li class="nav-item ">
                                 <a class="nav-link text-wh "
                                     href="{{ route('article.create') }}">{{ __('ui.publish_article') }}</a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('cart.index') }}" class="text-decoration-none  nav-link">
-                                    Carrello
+
+                            <li class="nav-item d-xl-none">
+                                <a href="{{ route('cart.index') }}" class="text-decoration-none nav-link">
+                                    {{ __('ui.cart') }}
                                     @if (\App\Models\Cart::cartCount())
                                         <span
-                                            class="ms-1 px-3 py-1  rounded-pill bg-secondary text-wh">{{ \App\Models\Cart::cartCount() }}</span>
+                                            class="ms-1 px-3 py-1 rounded-pill bg-secondary text-wh">{{ \App\Models\Cart::cartCount() }}</span>
                                     @endif
                                 </a>
                             </li>
                         @endauth
-                        <li class="nav-item  position-static categories active-color">
-                            <a class="nav-link" data-bs-toggle="collapse" href="#categoriesMenu" role="button">
+
+                        <li class="nav-item position-static categories active-color">
+                            <a class="nav-link"
+                                data-bs-toggle="collapse"
+                                href="#categoriesMenu"
+                                role="button"
+                                aria-expanded="false"
+                                aria-controls="categoriesMenu">
                                 {{ __('ui.categories') }}
                             </a>
                         </li>
-
-
 
                     </ul>
 
@@ -198,13 +201,15 @@
                             </div>
                         </div>
                     </div>
+
                     <ul class="list-unstyled ">
-                        <li class="nav-item d-xl-none  ">
+                        <li class="nav-item d-xl-none">
                             <a href="#languagesMenu" class="nav-link active-color py-2 w-100"
                                 data-bs-toggle="collapse" role="button" aria-expanded="false"
                                 aria-controls="languagesMenu">
                                 {{ __('ui.languages') }}
                             </a>
+
                             <div class="collapse w-100" id="languagesMenu">
                                 <ul class="list-unstyled m-0 p-0 w-100">
                                     <li>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\IsRevisor;
+
 use App\Models\Article;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 use App\Mail\BecomeRevisor;
-use App\Models\Review;
+use App\Mail\RejectReason;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
@@ -27,17 +28,19 @@ class RevisorController extends Controller
         $article->revisor_id = auth()->id();
         $article->save();
         session()->put("revisor_can_undo",true);
-        return redirect()->back()->with("message", "Hai accettato l'articolo $article->title");
+        return redirect()->back()->with("message", __("ui.article_accept").$article->title);
     }
 
-    public function reject(Article $article)
+    public function reject(Article $article,Request $request)
     {
+        $reason=$request->reason;
         $article->setAccepted(false);
         $article->revisor_id = auth()->id();
         $article->save();
+        Mail::to($article->user->email)->send(new RejectReason($article,$reason ));
         session()->put("revisor_can_undo",true);
 
-        return redirect()->back()->with("error_message", "Hai rifiutato l'articolo $article->title");
+        return redirect()->back()->with("error_message", __("ui.article_reject").$article->title);
     }
     public function undo()
     {
@@ -50,14 +53,14 @@ class RevisorController extends Controller
             session()->forget("revisor_can_undo");
 
 
-            return redirect()->back()->with("message", "La revisione è stata annullata");
+            return redirect()->back()->with("message", __("ui.revision_undo") );
         }
     }
 
     public function becomeRevisor()
     {
         Mail::to("admin@presto.it")->send(new BecomeRevisor(Auth::user()));
-        return redirect()->route("home")->with("message", "Complimenti,Hai richiesto di diventare revisore")->withFragment("revisorMessage");
+        return redirect()->route("home")->with("message",__("ui.reviewer_request") )->withFragment("revisorMessage");
     }
 
     public function makeRevisor(User $user)

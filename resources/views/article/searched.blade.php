@@ -9,10 +9,13 @@
 
             @empty
                 <div class="col-12 mt-5">
-                    <h3 class="text-center text-secondary fw-semibold ">{{ __('ui.no_articles_available') }}</h3>
+                    <p class="text-center text-secondary fw-semibold">
+                        {{ __('ui.no_articles_available') }}
+                    </p>
                 </div>
             @endforelse
         </div>
+
         <div class="d-flex justify-content-center">
             <div>{{ $articles->links() }}</div>
         </div>

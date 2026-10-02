@@ -12,12 +12,7 @@ class PublicController extends Controller
         $articles = Article::where("is_accepted", true)->orderBy("created_at", "desc")->take(9)->orderBy("created_at", "desc")->get();
         return view('welcome', compact("articles"));
     }
-    // PER DOCENTE: con il metodo commentato mi andava in errore Scout,sembra sia per colpa del metodo where() 
-    // public function searchArticles(Request $request){
-    // $query=$request->input("query");
-    // $articles =Article::search($query)->where("is_accepted",true)->paginate(6);
-    // return view("article.searched",compact("articles","query"));
-    // }
+
 
     public function searchArticles(Request $request)
     {
@@ -33,8 +28,9 @@ class PublicController extends Controller
         return view("article.searched", compact("articles", "query"));
     }
 
-    public function setLanguage($lang){
-        session()->put("locale",$lang);
+    public function setLanguage($lang)
+    {
+        session()->put("locale", $lang);
         return redirect()->back();
     }
 }

@@ -7,7 +7,7 @@
                 <form action="{{ route('register.store') }}" method="POST" class="form-box">
                     @csrf
                     <div class="mb-3">
-                        <h2 class="text-center h1 fw-semibold ">{{ __('ui.register') }}</h2>
+                        <h1 class="text-center fw-semibold ">{{ __('ui.register') }}</h1>
                         <p class="text-secondary text-center mb-4">{{ __('ui.welcome') }}!</p>
                     </div>
                     <div class="mb-4">
@@ -18,8 +18,8 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="userEmail" class="form-label">E-mail</label>
-                        <input type="email" name="email" class="form-control shadow" id="exampleInputEmail1"
+                        <label for="userEmail" class="form-label">{{ __('ui.email') }}</label>
+                        <input type="email" name="email" class="form-control shadow" id="userEmail"
                             aria-describedby="emailHelp">
                         <div id="emailHelp" class="form-text">{{ __('ui.email_privacy') }}.</div>
                         @error('email')
@@ -27,14 +27,15 @@
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="userPassword" class="form-label">Password</label>
+                        <label for="userPassword" class="form-label">{{ __('ui.password') }}</label>
                         <input type="password" name="password" class="form-control shadow" id="userPassword">
                         @error('password')
                             <div class="text-danger mb-4">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-4">
-                        <label for="userConfirmPassword" class="form-label">{{ __('ui.confirm') }} Password</label>
+                        <label for="userConfirmPassword" class="form-label">{{ __('ui.confirm') }}
+                            {{ __('ui.password') }}</label>
                         <input type="password" name="password_confirmation" class="form-control shadow"
                             id="userConfirmPassword">
                         @error('password_confirmation')

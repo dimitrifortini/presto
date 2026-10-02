@@ -17,6 +17,7 @@ return
           'register_now' => 'Register now',
           'insert_password' => 'Enter your password',
           'insert_email' => 'Enter your email',
+          "password" => "Password",
           // Form
           'insert_new_listing' => 'Insert New Listing',
           'name' => 'Name',
@@ -70,7 +71,7 @@ return
           'undo' => 'Undo last review',
 
           // USER
-          "my_profile"=>"My profile",
+          "my_profile" => "My profile",
 
           // Revisor
           'no_articles_to_review' => 'No articles to review',
@@ -101,8 +102,121 @@ return
           // There isn't
           'no_articles_available' => 'There are currently no articles available',
           'no_articles_in_category' => 'There are currently no articles in this category',
+          // Flash messages
+          'delete_article' => 'The article was deleted successfully',
+          "review_update" => "Review updated successfully.",
+          "review_delete" => "Review deleted successfully.",
+          "article_accept" => "You accepted the article ",
+          "article_reject" => "You rejected the article ",
+          "revision_undo" => "The previous review has been undone",
+          "reviewer_request" => "You have requested to become a reviewer",
+          "announce_create" => "Article created successfully.",
+          "announce_update" => "Article updated successfully.",
+          "empty_cart" => "The cart is empty.",
 
 
+          'admin_dashboard' => 'Admin Dashboard',
+          'order' => 'Order',
+          'customer' => 'Customer',
+          'date' => 'Date',
+          'details' => 'Details',
+          'close' => 'Close',
+          'order_detail' => 'Order details',
+          'total' => 'Total',
+          'status' => 'Status',
+          'pending' => 'Pending',
+          'confirmed' => 'Confirmed',
+          'shipped' => 'Shipped',
+          'delivered' => 'Delivered',
+          'cancelled' => 'Cancelled',
+          'update' => 'Update',
+
+          'no_articles' => "You haven't posted any listings yet",
+          'do_it_now' => 'Do it now!',
+
+          'your_cart' => 'Your cart',
+          'article_added_on' => 'Item added on',
+          'product_image' => 'Product image',
+
+          'reviews' => 'Reviews',
+          'add_review' => 'Add a review',
+          'edit_rating' => 'Edit rating',
+          'edit' => 'Edit',
+          'added_on' => 'Added on',
+          'add_new_review' => 'Add a new review',
+          'rating' => 'Rating',
+          'write_review' => 'Write your review:',
+          'add' => 'Add',
+          'delete_review_confirm' => 'Are you sure you want to delete this review?',
+          'cancel' => 'Cancel',
+          'delete' => 'Delete',
+
+          'admin_area' => 'Admin Area',
+          'cart' => 'Cart',
+
+          'summary' => 'Summary',
+          'show_more_articles' => 'Show :count more items',
+          'hide_articles' => 'Hide items',
+          'free_shipping' => 'Free shipping',
+          'proceed_to_checkout' => 'Proceed to checkout',
+
+          'quantity' => 'Quantity',
+
+          'item_image' => 'Item image',
+          'photo_preview' => 'Photo preview',
+          'remove_image' => 'Remove image',
+          'current_photo_preview' => 'Current photo preview',
+          'new_photo_preview' => 'New photo preview',
+
+          'shipping_details' => 'Shipping details',
+          'shipping_address' => 'Shipping address',
+          'payment_method' => 'Payment method',
+          'credit_debit_card' => 'Credit/debit card',
+          'paypal_payment' => 'Payment via PayPal',
+          'cash_on_delivery' => 'Pay on delivery',
+          'cash_on_delivery_method' => 'Cash on delivery',
+          'confirm_order' => 'Confirm order',
+          'order_summary' => 'Order summary',
+          'per_piece' => '/ piece',
+          'subtotal' => 'Subtotal',
+
+          'email' => 'Email',
+          'card' => 'Card',
+          'paypal' => 'PayPal',
+
+          'your_orders' => 'Your orders',
+          'your_reviews' => 'Your reviews',
+          'article_unavailable' => 'Article no longer available',
+          'reviewed_on' => 'Reviewed on',
+          'your_review' => 'Your review',
+          'updated_on' => 'Updated on',
+          'no_reviews' => "You haven't written any reviews yet",
+
+          'revisor_dashboard' => 'Revisor Dashboard',
+          'labels' => 'Labels',
+          'no_labels' => 'No labels',
+          'ratings' => 'Ratings',
+          'adult' => 'Adult',
+          'medical' => 'Medical',
+          'violence' => 'Violence',
+          'spoof' => 'Spoof',
+          'racy' => 'Racy',
+          'author' => 'Author',
+          'article_image' => 'Image :number of article :title',
+
+          'user_avatar' => 'User avatar',
+          'member_since' => 'Member since :year',
+          'personal_data' => 'Personal details',
+          'package_image' => 'Image of a Presto package',
+          'star_image' => 'Image of a star',
+
+          'hero_title' => 'Everything you are looking for, gathered in one place.',
+          'hero_subtitle' => 'Discover unique products, find the best deals and shop in just a few clicks.',
+          'thank_you_for_review' => 'Thank you for your review',
+
+          'reject_article' => 'Reject article',          
+          'rejection_reason' => 'Reason for rejection',
+          'rejection_reason_placeholder' => 'Enter the reason for rejection (optional)',
 
 
 

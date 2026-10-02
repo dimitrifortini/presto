@@ -1,4 +1,4 @@
-<div class="bg-wh shadow card-custom">
+<article class="bg-wh shadow card-custom">
     <a class="card-link"
         href="
     @if (request()->routeIs('article.my_article')) {{ route('article.my_article_show', compact('article')) }}
@@ -16,12 +16,12 @@
             </div>
         @else
             <div class="overflow-hidden card-container">
-                <img src="/media/product.png" alt="Placeholder immagine prodotto" class="card-img mb-4">
+                <img src="/media/product.png" alt="Immagine di un paio di cuffie" class="card-img mb-4">
             </div>
         @endif
 
         <div class="text-center mt-3  ">
-            <h3 class="fw-bold mb-3 title-card">{{ Str::limit($article->title, 24) }}</h3>
+            <h2 class="fw-bold mb-3 title-card">{{ Str::limit($article->title, 20) }}</h2>
 
             <p class="mb-5 py-2 px-3 text-pr text-secondary">
                 #{{ __('ui.' . $article->category->name) }}
@@ -40,4 +40,4 @@
             {{ __('ui.add_to_cart') }}
         </button>
     </form>
-</div>
+</article>

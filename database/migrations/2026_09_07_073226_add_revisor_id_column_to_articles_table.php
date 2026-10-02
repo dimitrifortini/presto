@@ -6,20 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+   
     public function up(): void
     {
         Schema::table('articles', function (Blueprint $table) {
             $table->unsignedBigInteger("revisor_id")->nullable();
-            $table->foreign("revisor_id")->references("id")->on("users");
+            $table->foreign("revisor_id")->references("id")->on("users")->onDelete("set null");
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    
     public function down(): void
     {
         Schema::table('articles', function (Blueprint $table) {
